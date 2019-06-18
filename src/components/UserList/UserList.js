@@ -1,11 +1,15 @@
 import React from "react";
 
+import Usermini from './Usermini/Usermini';
+
 import './UserList.css';
 
 const UserList = props => {
   return (
       <div className="UserList">
-          <h2>User List</h2>
+          <Usermini name="Sek Oriakaczapinge"/>
+          <Usermini name="Zik"/>
+          <Usermini name="Leon Bj"/>
       </div>
   );
 };

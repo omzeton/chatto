@@ -1,0 +1,58 @@
+.Message {
+  position: relative;
+  max-width: 20em;
+  height: auto;
+  margin: 0.5em 1em;
+  border-radius: 1em;
+  display: inline-block;
+  box-shadow: 0 0 50px -10px var(--blu2);
+}
+
+.Self {
+  background-color: var(--w1);
+  float:left;
+}
+
+.Self h2 {
+  color: var(--b);
+}
+
+.Other {
+  background-color: var(--blu);
+  float:right;
+}
+
+.Message:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: -0.5em;
+  top: 0.8em;
+  height: 0px;
+  width: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--w1);
+}
+
+.Message.Other:after {
+  border-bottom: 8px solid transparent;
+  border-top: 8px solid transparent;
+  border-left: 8px solid var(--blu);
+  left: calc(100% + -.1em);
+}
+
+.Other h2 {
+  color: var(--w1);
+}
+
+.Message h2 {
+  font-family: var(--light);
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0 1em;
+}
+
+.Clear {
+    clear:both;
+}

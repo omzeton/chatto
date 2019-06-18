@@ -1,0 +1,68 @@
+.Usermini {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 3em;
+  margin: 1em 0;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3em 1fr;
+  box-shadow: 0 0 0 0 var(--w1);
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+  border-radius:.4em;
+  overflow: hidden;
+}
+
+.Usermini:hover {
+  box-shadow: 0 0 15px 0px var(--w1);
+}
+
+.Usermini .Usermini__Left {
+  width: 100%;
+  height: 100%;
+}
+
+.Usermini .Usermini__Left .Usermini__Left__Photo {
+    width:100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* border-radius: 50%; */
+}
+
+.Usermini:nth-child(1) .Usermini__Left .Usermini__Left__Photo {
+    background-image:url('http://localhost:3000/assets/01.png');
+}
+
+.Usermini:nth-child(2) .Usermini__Left .Usermini__Left__Photo {
+    background-image:url('http://localhost:3000/assets/04.png');
+}
+
+.Usermini:nth-child(3) .Usermini__Left .Usermini__Left__Photo {
+    background-image:url('http://localhost:3000/assets/03.jpg');
+}
+
+.Usermini .Usermini__Right {
+  background-color: var(--blu2);
+  width: 100%;
+  height: 100%;
+}
+
+.Usermini .Usermini__Right .Usermini__Right__Name {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Usermini .Usermini__Right .Usermini__Right__Name p {
+  font-family: var(--light);
+  font-size: 0.8rem;
+  line-height: 0;
+  margin-left: 1em;
+  color: var(--w1);
+  pointer-events: none;
+}

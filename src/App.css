@@ -1,13 +1,14 @@
 .App {
   position: absolute;
-  display: grid;
-  grid-template-rows: 3em 1fr;
-  grid-template-columns: 1fr;
   width: 100vw;
   height: 100vh;
 }
 
 .App--Bottom {
+  position: relative;
+  top:3em;
+  width:100%;
+  height: calc(100vh - 3em);
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 12em;
