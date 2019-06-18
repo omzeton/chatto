@@ -1,15 +1,14 @@
 .App {
   position: absolute;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  width:100vw;
-  height:100vh;
+  display: grid;
+  grid-template-rows: 3em 1fr;
+  grid-template-columns: 1fr;
+  width: 100vw;
+  height: 100vh;
 }
 
-.logo {
-  position: relative;
-  background-image:url('http://localhost:3000/assets/logo.svg');
-  width:40em;
-  height:20em;
+.App--Bottom {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 12em;
 }
