@@ -1,5 +1,64 @@
 .ChatInput {
-    width:100%;
-    height: 100%;
-    background-color:green;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 3.5em 1fr;
+  border-top: 1px solid var(--blu);
+  box-sizing: border-box;
+}
+.ChatInput textarea {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 3.5em;
+  padding-top: 1.2em;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1rem;
+  font-family: var(--light);
+  font-weight: 400;
+  color: var(--b);
+  box-sizing: border-box;
+  opacity: 0.7;
+}
+
+.ChatInput textarea:hover,
+.ChatInput textarea:focus {
+  opacity: 1;
+}
+
+.ChatInput .ChatInput__Input::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+.ChatInput .ChatInput__Input::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px 10px transparent;
+  border: solid 3px transparent;
+}
+
+.ChatInput .ChatInput__Input::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px 10px var(--b);
+  border-radius: 0.5em;
+  border: solid 3px transparent;
+}
+
+.ChatInput .ChatInput__Input::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 10px 10px var(--b);
+}
+
+.ChatInput .ChatInput__Send {
+  background-image: url("http://localhost:3000/assets/emoji.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1.5em;
+  opacity: 0.3;
+  transition: opacity 0.4s;
+  cursor: pointer;
+}
+
+.ChatInput .ChatInput__Send:hover {
+  opacity: 1;
 }

@@ -36,7 +36,7 @@
   padding:.5em .7em;
   font-weight: 900;
   cursor: pointer;
-  box-shadow:0 0 20px -3px var(--blu);
+  box-shadow:0 7px 20px -3px var(--blu);
   transition:background-color .3s, color .3s;
 }
 

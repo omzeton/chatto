@@ -1,10 +1,12 @@
 :root {
   --w1: #fffaff;
-  --blu: #1cb7ff;
-  --blu2: #62BFED;
+  --w2: #ececec;
+  --blu: #4e62f2;
+  --blu2: #6272ff;
+  --blu3: #3946ad;
   --b: #333333;
-  --g1: #595959;
-  --g2: #7f7f7f;
+  --g1: #809bad;
+  --g2: #b5cfe7;
   /* 500, 700, 900 */
   --bold: "Roboto", sans-serif;
   /* 300, 400 */
@@ -23,7 +25,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* filter:hue-rotate(-40deg); */
+  /* filter:hue-rotate(-320deg); */
 }
 
 code {

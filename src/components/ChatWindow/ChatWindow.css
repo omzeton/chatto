@@ -4,6 +4,9 @@
   height: 100%;
   overflow: hidden;
   background-color: var(--w1);
+  background-image:url('http://localhost:3000/assets/tb04_2.png');
+  background-repeat:repeat;
+  background-size:20em;
 }
 
 .ChatWindow .Chat__Container {
@@ -15,21 +18,28 @@
 }
 
 .ChatWindow .Chat__Container > div:last-child {
-    margin-bottom:3em;
+  margin-bottom: 3em;
+}
+
+.ChatWindow .Chat__Container > div:first-child {
+  margin-top: 1.5em;
 }
 
 .Chat__Container::-webkit-scrollbar {
-  width: .7em;
+  width: 0.7em;
 }
 
 .Chat__Container::-webkit-scrollbar-track {
-  background-color: var(--w1);
+  box-shadow: inset 0 0 10px 10px transparent;
+  border: solid 3px transparent;
 }
 
 .Chat__Container::-webkit-scrollbar-thumb {
-  background-color: var(--blu);
+  box-shadow: inset 0 0 10px 10px var(--blu);
+  border-radius: 0.5em;
+  border: solid 3px transparent;
 }
 
 .Chat__Container::-webkit-scrollbar-thumb:hover {
-  background-color: var(--blu2);
+  box-shadow: inset 0 0 10px 10px var(--b);
 }

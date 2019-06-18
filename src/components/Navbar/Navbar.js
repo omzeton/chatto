@@ -6,7 +6,7 @@ const Navbar = props => {
   return (
     <div className="Navbar">
       <div className="Navbar__Btn">
-        <h2 className="Navbar__Logo">chatto</h2>
+        <h2 className="Navbar__Logo">Chatto</h2>
       </div>
       <div />
       <div className="Navbar__Btn">

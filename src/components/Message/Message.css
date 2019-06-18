@@ -1,28 +1,36 @@
 .Message {
   position: relative;
-  max-width: 20em;
+  max-width: 15.5em;
   height: auto;
-  margin: 0.5em 1em;
+  margin: 0.3em 1em;
   border-radius: 1em;
   display: inline-block;
-  box-shadow: 0 0 50px -10px var(--blu2);
+  box-shadow: 0 13px 30px -9px rgba(29, 83, 185, 0.4);
+}
+
+.Other {
+  /* background-color: var(--blu); */
+  background: linear-gradient(to right, var(--blu) 0%, var(--blu2) 100%);
+  float: left;
+  border-top-left-radius: 0;
+  left: 1em;
+}
+
+.Other h2 {
+  color: var(--w1);
 }
 
 .Self {
   background-color: var(--w1);
-  float:left;
+  float: right;
+  border-top-right-radius: 0;
 }
 
 .Self h2 {
   color: var(--b);
 }
 
-.Other {
-  background-color: var(--blu);
-  float:right;
-}
-
-.Message:after {
+/* .Message:after {
   content: "";
   display: inline-block;
   position: absolute;
@@ -32,27 +40,35 @@
   width: 0px;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-right: 8px solid var(--w1);
+  border-right: 8px solid var(--blu);
 }
 
 .Message.Other:after {
   border-bottom: 8px solid transparent;
   border-top: 8px solid transparent;
-  border-left: 8px solid var(--blu);
-  left: calc(100% + -.1em);
-}
-
-.Other h2 {
-  color: var(--w1);
-}
+  border-left: 8px solid var(--w1);
+  border-right: none;
+  left: calc(100% + -0.1em);
+} */
 
 .Message h2 {
-  font-family: var(--light);
-  font-weight: 400;
+  font-family: var(--bold);
+  font-weight: 500;
   font-size: 0.9rem;
   padding: 0 1em;
+  line-height: 1.4em;
 }
 
 .Clear {
-    clear:both;
+  clear: both;
+}
+
+.Message__Pin {
+  width:2.3em;
+  height:2.3em;
+  border-radius:50%;
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0px 30px -2px rgba(29, 83, 185, 1);
 }
