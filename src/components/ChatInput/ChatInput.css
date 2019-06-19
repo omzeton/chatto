@@ -5,10 +5,17 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 3.5em 1fr;
-  border-top: 1px solid var(--blu);
+  border-top: 1px solid var(--g2);
   box-sizing: border-box;
 }
-.ChatInput textarea {
+
+.ChatInput .ChatInput__Form {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 3.5em;
+}
+
+.ChatInput .ChatInput__Form__Input {
   display: block;
   position: relative;
   width: 100%;
@@ -25,40 +32,61 @@
   opacity: 0.7;
 }
 
-.ChatInput textarea:hover,
-.ChatInput textarea:focus {
+.ChatInput .ChatInput__Form__Input:hover,
+.ChatInput .ChatInput__Form__Input:focus {
   opacity: 1;
 }
 
-.ChatInput .ChatInput__Input::-webkit-scrollbar {
+.ChatInput .ChatInput__Form__Input::-webkit-scrollbar {
   width: 0.7em;
 }
 
-.ChatInput .ChatInput__Input::-webkit-scrollbar-track {
+.ChatInput .ChatInput__Form__Input::-webkit-scrollbar-track {
   box-shadow: inset 0 0 10px 10px transparent;
   border: solid 3px transparent;
 }
 
-.ChatInput .ChatInput__Input::-webkit-scrollbar-thumb {
+.ChatInput .ChatInput__Form__Input::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 10px 10px var(--b);
   border-radius: 0.5em;
   border: solid 3px transparent;
 }
 
-.ChatInput .ChatInput__Input::-webkit-scrollbar-thumb:hover {
+.ChatInput .ChatInput__Form__Input::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px var(--b);
 }
 
-.ChatInput .ChatInput__Send {
-  background-image: url("http://localhost:3000/assets/emoji.svg");
+.ChatInput .ChatInput__Emoji {
+  background-image: url("http://localhost:3000/assets/attachment.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 1.5em;
-  opacity: 0.3;
+  background-size: 1.3em;
   transition: opacity 0.4s;
   cursor: pointer;
 }
 
-.ChatInput .ChatInput__Send:hover {
+.ChatInput .ChatInput__Form .ChatInput__Form__Send {
+  position: absolute;
+  width:5em;
+  height: 5em;
+  right:1em;
+  bottom:2em;
+  z-index: 9999;
+  border: none;
+  background-color: var(--blu);
+  background-image: url("http://localhost:3000/assets/send2.svg");
+  background-position: 48% 50%;
+  background-repeat: no-repeat;
+  border-radius:1em;
+  background-size: 1.7em;
+  transition: opacity 0.4s;
+  cursor: pointer;
+  box-shadow:0 7px 20px -3px var(--blu);
+  transition:opacity .4s;
+  outline: none;
+  opacity: 0.9;
+}
+
+.ChatInput .ChatInput__Form .ChatInput__Form__Send:hover {
   opacity: 1;
 }

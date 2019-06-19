@@ -18,12 +18,11 @@
   align-items: center;
   justify-content: center;
 }
-.Navbar__Btn .Navbar__Logo {
-  font-family:var(--bold);
-  font-size:1.2rem;
-  color:var(--blu);
-  font-weight:900;
-  line-height: 0;
+.Navbar__Logo {
+  background-image:url('http://localhost:3000/assets/logo3-01.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 4em;
 }
 
 .Navbar__Btn input[type="button"] {
