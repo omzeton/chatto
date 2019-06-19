@@ -1,8 +1,13 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 
 import "./AuthLogin.css";
 
 const AuthLogin = props => {
+  const switchRoutes = e => {
+    e.preventDefault();
+    props.history.push('/auth-register');
+  }
   return (
     <div className="Auth">
       <div className="Auth__Container">
@@ -28,7 +33,7 @@ const AuthLogin = props => {
         </div>
         <div className="Container--Bottom">
           <p>
-            <a href="/auth-register">Register</a> for a new account
+            <a href="/#" onClick={e => switchRoutes(e)}>Register</a> for a new account
           </p>
         </div>
       </div>
@@ -36,4 +41,4 @@ const AuthLogin = props => {
   );
 };
 
-export default AuthLogin;
+export default withRouter(AuthLogin);
