@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
-// import openSocket from "socket.io-client";
+import openSocket from "socket.io-client";
 
 import Navbar from "./components/Navbar/Navbar";
 import UserList from "./components/UserList/UserList";
@@ -16,7 +16,8 @@ class App extends Component {
   state = {
     isAuth: false,
     token: null,
-    userId: null
+    userId: null,
+    socket: null
   };
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -31,13 +32,14 @@ class App extends Component {
     const userId = localStorage.getItem("userId");
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
+    const socket = openSocket("http://localhost:8080");
     this.setState({
       isAuth: true,
       token: token,
-      userId: userId
+      userId: userId,
+      socket: socket
     });
     this.setAutoLogout(remainingMilliseconds);
-    // openSocket("http://localhost:3000");
   }
 
   setInnerAuth = (isAuth, token, userId) => {
@@ -59,6 +61,7 @@ class App extends Component {
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
+    this.props.history.push("/");
   };
 
   setStateOnLogout = () => {
@@ -73,7 +76,7 @@ class App extends Component {
   render() {
     let routes = this.state.isAuth ? (
       <div className="App--Bottom">
-        <ChatboxArea />
+        <ChatboxArea socket={this.state.socket} />
         <UserList />
       </div>
     ) : (
@@ -99,7 +102,10 @@ class App extends Component {
     );
     return (
       <div className="App">
-        <Navbar isAuth={this.state.isAuth} setStateOnLogout={this.setStateOnLogout}/>
+        <Navbar
+          isAuth={this.state.isAuth}
+          setStateOnLogout={this.setStateOnLogout}
+        />
         {routes}
       </div>
     );

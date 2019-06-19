@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import "./Navbar.css";
 
@@ -11,6 +12,11 @@ const Navbar = props => {
     localStorage.removeItem("userId");
     localStorage.removeItem("userSettings");
   };
+  const onLogoClick = e => {
+    e.preventDefault();
+    props.history.push('/');
+
+  }
   let buttons = props.isAuth ? (
     <>
       <div className="Navbar__Btn">
@@ -27,11 +33,11 @@ const Navbar = props => {
   );
   return (
     <div className="Navbar">
-      <div className={["Navbar__Btn", "Navbar__Logo"].join(" ")} />
+      <div className={["Navbar__Btn", "Navbar__Logo"].join(" ")} onClick={e => onLogoClick(e)}/>
       <div />
       {buttons}
     </div>
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
