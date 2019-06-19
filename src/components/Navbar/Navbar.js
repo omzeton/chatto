@@ -3,13 +3,21 @@ import React from "react";
 import "./Navbar.css";
 
 const Navbar = props => {
+  const logoutHandler = e => {
+    e.preventDefault();
+    props.setStateOnLogout();
+    localStorage.removeItem("token");
+    localStorage.removeItem("expiryDate");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userSettings");
+  };
   let buttons = props.isAuth ? (
     <>
       <div className="Navbar__Btn">
         <input type="button" value="Settings" />
       </div>
       <div className="Navbar__Btn">
-        <input type="button" value="Log Out" />
+        <input type="button" value="Log Out" onClick={e => logoutHandler(e)}/>
       </div>
     </>
   ) : (

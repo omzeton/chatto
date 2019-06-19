@@ -146,6 +146,7 @@
   color: var(--w1);
   font-weight: 500;
   font-size: 0.9rem;
+  width:80%;
 }
 
 .Form__Error p span {

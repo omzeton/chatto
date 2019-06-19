@@ -1,13 +1,103 @@
-import React from "react";
-import { withRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 
 import "./AuthLogin.css";
 
 const AuthLogin = props => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
+
+  const [validationError, setValidationError] = useState("");
+
+  const formHandler = e => {
+    e.preventDefault();
+    switch (e.target.name) {
+      case "username":
+        setFormData({
+          ...formData,
+          username: e.target.value
+        });
+        break;
+      case "password":
+        setFormData({
+          ...formData,
+          password: e.target.value
+        });
+        break;
+      case "repeatPassword":
+        setFormData({
+          ...formData,
+          repeatPassword: e.target.value
+        });
+        break;
+      case "email":
+        setFormData({
+          ...formData,
+          email: e.target.value
+        });
+        break;
+      default:
+        return;
+    }
+  };
+
+  const onLogin = e => {
+    e.preventDefault();
+    const graphqlQuery = {
+      query: `{
+        login(username: "${formData.username}", password: "${
+        formData.password
+      }"){
+          token
+          userId
+        }
+      }`
+    };
+    fetch("http://localhost:8080/graphql", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(graphqlQuery)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(resData => {
+        console.log(resData);
+        if (resData.errors && resData.errors[0].status === 401) {
+          setValidationError(resData.errors[0].message);
+        }
+        if (!resData.errors) {
+          localStorage.setItem("token", resData.data.login.token);
+          localStorage.setItem("userId", resData.data.login.userId);
+          const remainingMilliseconds = 60 * 60 * 1000;
+          const expiryDate = new Date(
+            new Date().getTime() + remainingMilliseconds
+          );
+          localStorage.setItem("expiryDate", expiryDate.toISOString());
+          props.setAuth(
+            true,
+            resData.data.login.token,
+            resData.data.login.userId
+          );
+          props.history.push("/main-feed");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   const switchRoutes = e => {
     e.preventDefault();
-    props.history.push('/auth-register');
-  }
+    props.history.push("/auth-register");
+  };
+  const hideErrorMsg = () => {
+    setValidationError("");
+  };
+  const errorStyle = validationError
+    ? { opacity: 1, pointerEvents: "all" }
+    : { opacity: 0, pointerEvents: "none" };
   return (
     <div className="Auth">
       <div className="Auth__Container">
@@ -15,25 +105,43 @@ const AuthLogin = props => {
           <div className="Container__Logo" />
         </div>
         <div className="Container--Mid">
-          <form className="Auth__Form">
+          <form className="Auth__Form" onSubmit={e => onLogin(e)}>
             <div className="Auth__Container__Heading">
               <div className="Heading--SVG" />
               <div className="Heading--Text">
                 <h2>Login</h2>
               </div>
             </div>
-            <input type="text" placeholder="Username" />
-            <input type="password" placeholder="Password" />
+            <input
+              name="username"
+              onChange={formHandler}
+              onFocus={hideErrorMsg}
+              type="text"
+              placeholder="Username"
+            />
+            <input
+              name="password"
+              onChange={formHandler}
+              onFocus={hideErrorMsg}
+              type="password"
+              placeholder="Password"
+            />
             <a href="/auth-password">Forgot password?</a>
             <input type="submit" value="Login" />
-            <div className="Form__Error">
-              <p><span></span>Wrong username or password</p>
+            <div className="Form__Error" style={errorStyle}>
+              <p>
+                <span />
+                {validationError}
+              </p>
             </div>
           </form>
         </div>
         <div className="Container--Bottom">
           <p>
-            <a href="/#" onClick={e => switchRoutes(e)}>Register</a> for a new account
+            <a href="/#" onClick={e => switchRoutes(e)}>
+              Register
+            </a>{" "}
+            for a new account
           </p>
         </div>
       </div>
