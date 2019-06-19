@@ -1,0 +1,7 @@
+.Auth__Container__Reg {
+    height: 40em !important;
+}
+
+.Mid__Register {
+  grid-template-rows: repeat(6, 3em) !important;
+}

@@ -1,0 +1,127 @@
+.HomeScreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--w1);
+}
+
+.HomeScreen:before {
+  content:'';
+  position: absolute;
+  width:100%;
+  height:100%;
+  /* background-image:url('http://localhost:3000/assets/bg.png'); */
+  background-position: top center;
+  background-size: 200%;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+}
+
+#canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:transparent;
+  z-index: 9;
+}
+
+.HomeScreen__Container {
+  width: 38em;
+  height: 24em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70% 30%;
+  z-index: 999;
+}
+
+.HomeScreen__Container .Container__Top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.HomeScreen__Container .Container__Top .Container__Top--Logo {
+  width: 100%;
+  height: 10em;
+  background-image: url("http://localhost:3000/assets/logo3-01.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35em;
+}
+
+.HomeScreen__Container .Container__Top p {
+  position: relative;
+  font-family: var(--light);
+  font-size: 1.1em;
+  font-weight: 300;
+  margin-top: 0em;
+  color: var(--b);
+}
+
+.HomeScreen__Container .Container__Top p:after,
+.HomeScreen__Container .Container__Top p:before {
+  content: "";
+  position: absolute;
+  background-color: var(--blu);
+  width: 3em;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.HomeScreen__Container .Container__Top p:after {
+  left: -5em;
+}
+
+.HomeScreen__Container .Container__Top p:before {
+  left: calc(100% + 1.5em);
+}
+
+.HomeScreen__Container .Container__Bottom {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.HomeScreen__Container .Container__Bottom a {
+  text-decoration: none;
+}
+
+.HomeScreen__Container .Container__Bottom .Container__Button {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 10em;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--blu);
+  outline: none;
+  border-radius: 0.75em;
+  cursor: pointer;
+  box-shadow: 0 7px 20px -3px var(--blu);
+  transition: background-color 0.3s;
+}
+
+.HomeScreen__Container .Container__Bottom .Container__Button h2 {
+  font-weight: 900;
+  color: var(--w1);
+  font-family: var(--bold);
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.HomeScreen__Container .Container__Bottom .Container__Button:hover {
+  background-color: transparent;
+}
+
+.HomeScreen__Container .Container__Bottom .Container__Button:hover h2 {
+  color: var(--blu);
+}

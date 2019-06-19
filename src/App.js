@@ -6,7 +6,8 @@ import Navbar from "./components/Navbar/Navbar";
 import UserList from "./components/UserList/UserList";
 import ChatboxArea from "./components/ChatboxArea/ChatboxArea";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
-import Auth from "./components/Auth/Auth";
+import AuthLogin from "./components/AuthLogin/AuthLogin";
+import AuthRegister from './components/AuthRegister/AuthRegister';
 import ErrorScreen from "./components/ErrorScreen/ErrorScreen";
 
 import "./App.css";
@@ -49,7 +50,8 @@ class App extends Component {
         render={({ location }) => (
           <Switch location={location}>
             <Route path="/" exact render={() => <HomeScreen />} />
-            <Route path="/auth" exact render={() => <Auth />} />
+            <Route path="/auth-login" exact render={() => <AuthLogin />} />
+            <Route path="/auth-register" exact render={() => <AuthRegister />} />
             <Route path="/404" exact render={() => <ErrorScreen />} />
             <Route render={() => <Redirect to="/404" />} />
           </Switch>

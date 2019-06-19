@@ -1,0 +1,184 @@
+.Auth {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Auth .Auth__Container {
+  width: 22em;
+  height: 34em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8em 1fr 4em;
+}
+
+.Auth .Auth__Container .Container--Top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Auth .Auth__Container .Container--Top .Container__Logo {
+  width: 100%;
+  height: 5em;
+  background-image: url("http://localhost:3000/assets/logo3-01.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10em;
+}
+.Auth .Auth__Container .Container--Mid {
+  border: 2px solid var(--w2);
+}
+.Auth .Auth__Container .Container--Mid .Auth__Form {
+  position: relative;
+  width: 75%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: grid;
+  grid-template-areas: "header" "input" "input" "forgot" "submit";
+  grid-template-rows: repeat(3, 3em) 1em 3em;
+  grid-row-gap: 0.5em;
+}
+
+.Auth .Auth__Container .Container--Mid .Auth__Form .Auth__Container__Heading {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 2em 1fr;
+}
+
+.Auth .Auth__Container .Container--Mid input[type="text"],
+.Auth .Auth__Container .Container--Mid input[type="email"],
+.Auth .Auth__Container .Container--Mid input[type="password"] {
+  height: calc(100% - 10px);
+  position: relative;
+  background-color: var(--w2);
+  border: 1px solid;
+  border-color: var(--w2);
+  padding-left: 1em;
+  outline: none;
+  font-size: 0.8em;
+  color: var(--b);
+  box-shadow: 0 0 0 0 var(--blu);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.Auth .Auth__Container .Container--Mid input[type="text"]:focus,
+.Auth .Auth__Container .Container--Mid input[type="email"]:focus,
+.Auth .Auth__Container .Container--Mid input[type="password"]:focus {
+  border-color: var(--blu);
+  box-shadow: 0 7px 20px -10px var(--blu);
+}
+
+.Auth .Auth__Container .Container--Mid a {
+  position: relative;
+  font-family: var(--light);
+  font-size: 0.9rem;
+  left: calc(100% - 7em);
+  font-weight: 300;
+  color: var(--b);
+  text-decoration: none;
+  color: var(--blu);
+}
+.Auth .Auth__Container .Container--Mid a:hover {
+  text-decoration: underline;
+}
+
+.Auth .Auth__Container .Container--Mid input[type="submit"] {
+  width: 40%;
+  height: 80%;
+  background-color: var(--blu);
+  font-family: var(--bold);
+  outline: none;
+  color: var(--w1);
+  border: none;
+  border-radius: 0.75em;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 7px 20px -3px var(--blu);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.Auth .Auth__Container .Container--Mid input[type="submit"]:hover {
+  background-color: transparent;
+  color: var(--blu);
+}
+
+.Heading--SVG {
+  background-image: url("http://localhost:3000/assets/login.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 55%;
+}
+
+.Auth__Container__Heading .Heading--Text {
+  display: flex;
+  align-items: center;
+}
+
+.Auth__Container__Heading .Heading--Text h2 {
+  font-family: var(--bold);
+  font-weight: 500;
+  line-height: 0;
+  color: var(--b);
+  font-size: 1.2rem;
+  margin-left: -0.1em;
+}
+
+.Form__Error {
+  background-color: var(--err);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75em;
+  opacity: 0;
+  pointer-events:none;
+  box-shadow: 0 7px 20px -3px var(--err);
+  transition:opacity .4s;
+}
+
+.Form__Error p {
+  font-family: var(--bold);
+  color: var(--w1);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.Form__Error p span {
+  position: relative;
+  display: inline-block;
+  top: 0.25em;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3em;
+  background-image: url("http://localhost:3000/assets/err2.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Auth .Auth__Container .Container--Bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Auth .Auth__Container .Container--Bottom p {
+  font-family: var(--light);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--b);
+}
+
+.Auth .Auth__Container .Container--Bottom p a {
+  text-decoration: none;
+  color: var(--blu);
+}
+
+.Auth .Auth__Container .Container--Bottom p a:hover {
+  text-decoration: underline;
+}
