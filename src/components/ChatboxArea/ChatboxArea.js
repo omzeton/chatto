@@ -10,10 +10,10 @@ const ChatboxArea = props => {
 
   useEffect(() => {
     setConversation({
-      messages: props.socketData,
+      messages: props.socketData.messages,
       users: [...conversation.users]
     });
-    console.log(conversation.messages);
+    console.log(props.socketData);
     // eslint-disable-next-line
   }, [props.socketData]);
 

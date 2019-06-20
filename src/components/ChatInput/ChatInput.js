@@ -16,13 +16,13 @@ const ChatInput = props => {
       query: `
       mutation {
         createMessage(messageInput:{conversationId: "5d0a787817c18e39c4a7aebc", userId: "${userId}", body: "${
-        msg.body
-      }"}) {
-        messages {
-          uId
-          body
-          date
-        }
+          msg.body
+        }"}) {
+          messages {
+            uId
+            body
+            date
+          }
         }
       }`
     };

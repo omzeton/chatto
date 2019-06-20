@@ -42,8 +42,8 @@ class App extends Component {
     this.setAutoLogout(remainingMilliseconds);
     socket.on("messages", data => {
       if (data.action === "create") {
-        this.setState({ socketData: data.post.messages });
-        console.log("New client post!");
+        this.setState({ socketData: data.post });
+        console.log(data);
       }
     });
   }
@@ -89,7 +89,7 @@ class App extends Component {
                 <Route
                   path="/chatroom"
                   exact
-                  render={() => <Chatroom socketData={this.state.socketsocketData} />}
+                  render={() => <Chatroom socketData={this.state.socketData} />}
                 />
                 <Route path="/generator" exact render={() => <Generator />} />
                 } />
