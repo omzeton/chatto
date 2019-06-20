@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 import "./AuthLogin.css";
 
@@ -10,6 +11,7 @@ const AuthLogin = props => {
   });
 
   const [validationError, setValidationError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const formHandler = e => {
     e.preventDefault();
@@ -45,6 +47,7 @@ const AuthLogin = props => {
 
   const onLogin = e => {
     e.preventDefault();
+    setLoading(true);
     const graphqlQuery = {
       query: `{
         login(username: "${formData.username}", password: "${
@@ -65,6 +68,7 @@ const AuthLogin = props => {
       })
       .then(resData => {
         console.log(resData);
+        setLoading(false);
         if (resData.errors && resData.errors[0].status === 401) {
           setValidationError(resData.errors[0].message);
         }
@@ -85,6 +89,7 @@ const AuthLogin = props => {
         }
       })
       .catch(err => {
+        setLoading(false);
         console.log(err);
       });
   };
@@ -128,12 +133,18 @@ const AuthLogin = props => {
             />
             <a href="/auth-password">Forgot password?</a>
             <input type="submit" value="Login" />
-            <div className="Form__Error" style={errorStyle}>
-              <p>
-                <span />
-                {validationError}
-              </p>
-            </div>
+            {loading ? (
+              <div className="Form__Loading">
+                <Loader />
+              </div>
+            ) : (
+              <div className="Form__Error" style={errorStyle}>
+                <p>
+                  <span />
+                  {validationError}
+                </p>
+              </div>
+            )}
           </form>
         </div>
         <div className="Container--Bottom">

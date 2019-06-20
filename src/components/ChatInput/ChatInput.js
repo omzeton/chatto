@@ -11,7 +11,6 @@ const ChatInput = props => {
   };
   const sendMessage = e => {
     e.preventDefault();
-    console.log(msg);
     const userId = localStorage.getItem("userId");
     const graphqlQuery = {
       query: `

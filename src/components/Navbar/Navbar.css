@@ -1,5 +1,6 @@
 .Navbar {
-  background-color: var(--w1);
+  /* background-color: var(--w1); */
+  background-color: transparent;
   width: 100%;
   top:0;
   left:0;
@@ -47,6 +48,6 @@
 }
 
 .Navbar__Btn input[type="button"]:hover {
-  background-color:transparent;
+  background-color:var(--w1);
   color:var(--blu);
 }

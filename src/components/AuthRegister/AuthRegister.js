@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 import "./AuthRegister.css";
 
@@ -12,6 +13,7 @@ const AuthRegister = props => {
   });
 
   const [validationError, setValidationError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const formHandler = e => {
     e.preventDefault();
@@ -51,6 +53,7 @@ const AuthRegister = props => {
 
   const onRegister = e => {
     e.preventDefault();
+    setLoading(true);
     const graphqlQuery = {
       query: `
       mutation {
@@ -74,6 +77,7 @@ const AuthRegister = props => {
         return res.json();
       })
       .then(resData => {
+        setLoading(false);
         if (resData.errors && resData.errors[0].status === 422) {
           setValidationError(resData.errors[0].data[0].message);
         }
@@ -86,6 +90,7 @@ const AuthRegister = props => {
         console.log(resData);
       })
       .catch(err => {
+        setLoading(false);
         console.log(err);
       });
   };
@@ -144,12 +149,18 @@ const AuthRegister = props => {
               onChange={formHandler}
             />
             <input type="submit" value="Register" />
-            <div className="Form__Error" style={errorStyle}>
-              <p>
-                <span />
-                {validationError}
-              </p>
-            </div>
+            {loading ? (
+              <div className="Form__Loading">
+                <Loader />
+              </div>
+            ) : (
+              <div className="Form__Error" style={errorStyle}>
+                <p>
+                  <span />
+                  {validationError}
+                </p>
+              </div>
+            )}
           </form>
         </div>
         <div className="Container--Bottom">

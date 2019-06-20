@@ -13,7 +13,6 @@ const UserList = props => {
       <div className="UserList--Main">
         <Usermini name="Pysio" />
         <Usermini name="Mysio" />
-        <Usermini name="Zdzisio" />
       </div>
     </div>
   );

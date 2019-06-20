@@ -1,5 +1,5 @@
 .HomeScreen {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
@@ -13,11 +13,10 @@
   position: absolute;
   width:100%;
   height:100%;
-  /* background-image:url('http://localhost:3000/assets/bg.png'); */
+  background-image:url('http://localhost:3000/assets/bg__splash.png');
   background-position: top center;
-  background-size: 200%;
+  background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.3;
 }
 
 #canvas {
@@ -119,7 +118,7 @@
 }
 
 .HomeScreen__Container .Container__Bottom .Container__Button:hover {
-  background-color: transparent;
+  background-color: var(--w1);
 }
 
 .HomeScreen__Container .Container__Bottom .Container__Button:hover h2 {

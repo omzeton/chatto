@@ -33,15 +33,11 @@
 }
 
 .Usermini:nth-child(1) .Usermini__Left .Usermini__Left__Photo {
-    background-image:url('http://localhost:3000/assets/01.jpg');
+    background-image:url('http://localhost:3000/assets/04.jpg');
 }
 
 .Usermini:nth-child(2) .Usermini__Left .Usermini__Left__Photo {
     background-image:url('http://localhost:3000/assets/02.jpg');
-}
-
-.Usermini:nth-child(3) .Usermini__Left .Usermini__Left__Photo {
-    background-image:url('http://localhost:3000/assets/03.jpg');
 }
 
 .Usermini .Usermini__Right {

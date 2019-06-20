@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import ChatWindow from "../ChatWindow/ChatWindow";
 import ChatInput from "../ChatInput/ChatInput";
@@ -7,6 +7,15 @@ import "./ChatboxArea.css";
 
 const ChatboxArea = props => {
   const [conversation, setConversation] = useState({ messages: [], users: [] });
+
+  useEffect(() => {
+    setConversation({
+      messages: props.socketData,
+      users: [...conversation.users]
+    });
+    console.log(conversation.messages);
+    // eslint-disable-next-line
+  }, [props.socketData]);
 
   const loadMessages = e => {
     const graphqlQuery = {
@@ -44,10 +53,6 @@ const ChatboxArea = props => {
   };
 
   const loadNewMsg = newData => {
-    props.socket.on('messages', data => {
-      setConversation({ messages: newData, users: [...conversation.users] });
-      console.log(data);
-    });
     setConversation({ messages: newData, users: [...conversation.users] });
   };
   return (

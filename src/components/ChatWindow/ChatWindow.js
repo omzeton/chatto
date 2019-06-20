@@ -5,6 +5,7 @@ import Msg from "../Message/Message";
 import "./ChatWindow.css";
 
 const ChatWindow = props => {
+
   useEffect(() => {
     props.loadMessages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -12,8 +13,6 @@ const ChatWindow = props => {
 
   let feed = [],
   con = props.conv;
-
-  console.log(con);
 
   if (con.users.length > 0) {
     const userId = localStorage.getItem("userId");

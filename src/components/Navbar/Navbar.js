@@ -14,26 +14,36 @@ const Navbar = props => {
   };
   const onLogoClick = e => {
     e.preventDefault();
-    props.history.push('/');
-
-  }
+    props.history.push("/");
+  };
+  const onGetStartedClick = e => {
+    e.preventDefault();
+    props.history.push("/auth-register");
+  };
   let buttons = props.isAuth ? (
     <>
       <div className="Navbar__Btn">
         <input type="button" value="Settings" />
       </div>
       <div className="Navbar__Btn">
-        <input type="button" value="Log Out" onClick={e => logoutHandler(e)}/>
+        <input type="button" value="Log Out" onClick={e => logoutHandler(e)} />
       </div>
     </>
   ) : (
     <div className="Navbar__Btn" style={{ gridColumn: 4 }}>
-      <input type="button" value="Get started" />
+      <input
+        type="button"
+        value="Get started"
+        onClick={e => onGetStartedClick(e)}
+      />
     </div>
   );
   return (
     <div className="Navbar">
-      <div className={["Navbar__Btn", "Navbar__Logo"].join(" ")} onClick={e => onLogoClick(e)}/>
+      <div
+        className={["Navbar__Btn", "Navbar__Logo"].join(" ")}
+        onClick={e => onLogoClick(e)}
+      />
       <div />
       {buttons}
     </div>

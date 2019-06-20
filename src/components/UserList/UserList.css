@@ -1,12 +1,15 @@
 .UserList {
+  top:3em;
+  position: relative;
   width:100%;
-  height: 100%;
+  height: calc(100% - 3em);
   background-color: var(--blu);
   display:grid;
   grid-template-columns: 1fr;
   grid-template-rows:5em 1fr;
   overflow-y:scroll;
   overflow-x:hidden;
+  z-index: 999;
 }
 .UserList .UserList--Header {
   display:flex;
