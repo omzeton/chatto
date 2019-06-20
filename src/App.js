@@ -10,6 +10,7 @@ import AuthLogin from "./components/AuthLogin/AuthLogin";
 import AuthRegister from "./components/AuthRegister/AuthRegister";
 import ErrorScreen from "./components/ErrorScreen/ErrorScreen";
 import Chatroom from "./components/Chatroom/Chatroom";
+import Settings from "./components/Settings/Settings";
 
 import "./App.css";
 
@@ -18,12 +19,15 @@ class App extends Component {
     isAuth: false,
     token: null,
     userId: null,
-    socketData: []
+    username: null,
+    socketData: [],
+    settings: false
   };
   componentDidMount() {
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
-    if (!token || !expiryDate) {
+    const username = localStorage.getItem("username");
+    if (!token || !expiryDate || !username) {
       return;
     }
     if (new Date(expiryDate) <= new Date()) {
@@ -37,7 +41,8 @@ class App extends Component {
     this.setState({
       isAuth: true,
       token: token,
-      userId: userId
+      userId: userId,
+      username: username
     });
     this.setAutoLogout(remainingMilliseconds);
     socket.on("messages", data => {
@@ -48,8 +53,8 @@ class App extends Component {
     });
   }
 
-  setInnerAuth = (isAuth, token, userId) => {
-    this.setState({ isAuth: isAuth, token: token, userId: userId });
+  setInnerAuth = (isAuth, token, userId, username) => {
+    this.setState({ isAuth: isAuth, token: token, userId: userId, username });
   };
 
   setAutoLogout = milliseconds => {
@@ -62,11 +67,13 @@ class App extends Component {
     this.setState({
       isAuth: false,
       token: null,
-      userId: null
+      userId: null,
+      username: null
     });
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
+    localStorage.removeItem("username");
     this.props.history.push("/");
   };
 
@@ -74,9 +81,20 @@ class App extends Component {
     this.setState({
       isAuth: false,
       token: null,
-      userId: null
+      userId: null,
+      username: null
     });
     this.props.history.push("/");
+  };
+
+  settingsOn = () => {
+    this.setState({ settings: true });
+    console.log("on");
+  };
+
+  settingsOff = () => {
+    this.setState({ settings: false });
+    console.log("off");
   };
 
   render() {
@@ -97,7 +115,7 @@ class App extends Component {
                 <Route
                   path="/"
                   exact
-                  render={() => <Redirect to="/chatroom" />}
+                  render={() => <Redirect to="/generator" />}
                 />
                 <Route render={() => <Redirect to="/chatroom" />} />
               </Switch>
@@ -133,9 +151,17 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar
+          settingsOn={this.settingsOn}
           isAuth={this.state.isAuth}
           setStateOnLogout={this.setStateOnLogout}
         />
+        {this.state.isAuth ? (
+          <Settings
+            settingsOff={this.settingsOff}
+            toggleSettings={this.toggleSettings}
+            settingsOn={this.state.settings}
+          />
+        ) : null}
         <div className="App--Bottom">{routes}</div>
       </div>
     );

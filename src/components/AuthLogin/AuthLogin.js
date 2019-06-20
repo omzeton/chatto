@@ -55,6 +55,7 @@ const AuthLogin = props => {
       }"){
           token
           userId
+          username
         }
       }`
     };
@@ -74,6 +75,7 @@ const AuthLogin = props => {
         }
         if (!resData.errors) {
           localStorage.setItem("token", resData.data.login.token);
+          localStorage.setItem('username', resData.data.login.username)
           localStorage.setItem("userId", resData.data.login.userId);
           const remainingMilliseconds = 60 * 60 * 1000;
           const expiryDate = new Date(

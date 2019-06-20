@@ -23,7 +23,11 @@ const Navbar = props => {
   let buttons = props.isAuth ? (
     <>
       <div className="Navbar__Btn">
-        <input type="button" value="Settings" />
+        <input
+          type="button"
+          value="Settings"
+          onClick={() => props.settingsOn()}
+        />
       </div>
       <div className="Navbar__Btn">
         <input type="button" value="Log Out" onClick={e => logoutHandler(e)} />

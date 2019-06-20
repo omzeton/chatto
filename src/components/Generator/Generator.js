@@ -3,12 +3,13 @@ import React from "react";
 import "./Generator.css";
 
 const Generator = props => {
+  const username = localStorage.getItem('username');
   return (
     <div className="Generator">
       <div className="Generator__Container">
         <div className="Container__Top__Avatar" />
         <div className="Container__Top__Heading">
-          <h2>Welcome back <span>Pysio</span>!</h2>
+          <h2>Welcome back <span>{username}</span>!</h2>
           <p>
             To connect with your friends simply paste your secret link below and
             hit <span>"Connect with room"</span>. If you wish to start a new conversation
