@@ -6,15 +6,36 @@
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.Generator::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+.Generator::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px 10px transparent;
+  border: solid 3px transparent;
+}
+
+.Generator::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px 10px var(--blu);
+  border-radius: 0.5em;
+  border: solid 3px transparent;
+}
+
+.Generator::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 10px 10px var(--b);
 }
 
 .Generator .Generator__Container {
   position: relative;
   width: 45em;
   height: 50em;
-  left:50%;
-  top:3em;
-  transform:translateX(-50%);
+  left: 50%;
+  top: 3em;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,7 +169,7 @@
   font-weight: 300;
   font-size: 1.3rem;
   padding-left: 2em;
-  padding-right:2em;
+  padding-right: 2em;
   outline: none;
   border: none;
   box-shadow: 0 0 0 0 var(--w1);
@@ -161,11 +182,133 @@
 }
 
 .Generator .Generator__Loading {
-  margin-top:2em;
-  width:100%;
-  height:5em;
-  display:flex;
+  margin-top: 2em;
+  width: 100%;
+  height: 5em;
+  display: flex;
   align-items: center;
   justify-content: center;
-  transition:opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.Generator__Rooms {
+  position: relative;
+  margin-top: -3em;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Generator__Rooms .Generator__Rooms__Header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.Generator__Rooms .Generator__Rooms__Header h2 {
+  position: relative;
+  font-family: var(--bold);
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--blu);
+}
+
+.Generator__Rooms .Generator__Rooms__Header h2:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  background-color: var(--w1);
+}
+
+.Generator__Rooms .Generator__Links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Generator__Rooms .Generator__Links .Generated {
+  width:38em;
+  height:4em;
+  display: grid;
+  grid-template-columns: 8em 1fr;
+  background-color: var(--w1);
+  position: relative;
+  cursor: pointer;
+  border-radius: 0.75em;
+  box-shadow: 0 7px 20px -3px var(--blu);
+  transition: background-color 0.3s;
+  margin-bottom:2em;
+}
+
+.Generator__Rooms .Generator__Links .Generated:last-child {
+  margin-bottom:10em;
+}
+
+.Generator__Rooms .Generator__Links .Generated .Generated--Left {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Generator__Rooms .Generator__Links .Generated .Generated--Left:after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 80%;
+  left: 100%;
+  transform: translateY(-50%);
+  top: 50%;
+  background-color: var(--blu);
+  transition:background-color 0.3s;
+}
+
+.Generator__Rooms .Generator__Links .Generated .Generated--Left p {
+  font-weight: 400;
+  color: var(--b);
+  font-family: var(--light);
+  font-size: 0.9rem;
+  transition:color 0.3s;
+}
+
+.Generator__Rooms .Generator__Links .Generated .Generated--Right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Generator__Rooms .Generator__Links .Generated .Generated--Right h2 {
+  font-weight: 700;
+  color: var(--b);
+  font-family: var(--bold);
+  font-size: 1rem;
+  transition:color 0.3s;
+}
+
+.Generator__Rooms .Generator__Links .Generated:hover {
+  background-color:var(--blu);
+}
+
+.Generator__Rooms .Generator__Links .Generated:hover .Generated--Left p {
+  color:var(--w1);
+}
+
+.Generator__Rooms .Generator__Links .Generated:hover .Generated--Right h2 {
+  color:var(--w1);
+}
+
+.Generator__Rooms .Generator__Links .Generated:hover .Generated--Left:after {
+  background-color:var(--w1);
 }

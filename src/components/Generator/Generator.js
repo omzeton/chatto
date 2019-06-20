@@ -101,13 +101,68 @@ const Generator = props => {
         <div className="Container__Btm">
           <input
             type="text"
-            placeholder="Chatroom link"
+            placeholder="..."
             value={link}
             onChange={e => onLinkChange(e)}
           />
         </div>
         <div className="Generator__Loading" style={loadingStyle}>
           <Loader />
+        </div>
+      </div>
+      <div className="Generator__Rooms">
+        <div className="Generator__Rooms__Header">
+          <h2>Last few conversations</h2>
+        </div>
+        <div className="Generator__Links">
+
+
+          <div className="Generated">
+            <div className="Generated--Left">
+              <p>2019/06/19 20:03</p>
+            </div>
+            <div className="Generated--Right">
+              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
+            </div>
+          </div>
+
+          <div className="Generated">
+            <div className="Generated--Left">
+              <p>2019/06/19 20:03</p>
+            </div>
+            <div className="Generated--Right">
+              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
+            </div>
+          </div>
+
+          <div className="Generated">
+            <div className="Generated--Left">
+              <p>2019/06/19 20:03</p>
+            </div>
+            <div className="Generated--Right">
+              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
+            </div>
+          </div>
+
+          <div className="Generated">
+            <div className="Generated--Left">
+              <p>2019/06/19 20:03</p>
+            </div>
+            <div className="Generated--Right">
+              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
+            </div>
+          </div>
+
+          <div className="Generated">
+            <div className="Generated--Left">
+              <p>2019/06/19 20:03</p>
+            </div>
+            <div className="Generated--Right">
+              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>
