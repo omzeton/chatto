@@ -85,7 +85,7 @@ const AuthLogin = props => {
             resData.data.login.token,
             resData.data.login.userId
           );
-          props.history.push("/main-feed");
+          props.history.push("/generator");
         }
       })
       .catch(err => {
