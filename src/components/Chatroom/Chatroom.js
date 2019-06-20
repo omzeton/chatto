@@ -11,7 +11,7 @@ const Chatroom = props => {
   return (
     <div className="Chatroom">
       <ChatboxArea convId={convId} socketData={props.socketData} />
-      <UserList />
+      <UserList socketUsers={props.socketUsers} convId={convId}/>
     </div>
   );
 };

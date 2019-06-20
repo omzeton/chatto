@@ -1,19 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Usermini from "./Usermini/Usermini";
 
 import "./UserList.css";
 
 const UserList = props => {
+  const [users, setUsers] = useState();
+  useEffect(() => {
+    setUsers({
+      users: props.socketUsers.users
+    });
+    // eslint-disable-next-line
+  }, [props.socketUsers]);
+  useEffect(() => {
+    const graphqlQuery = {
+      query: `{
+        fetchConversation(conversationId: "${props.convId}") {
+          messages {
+            uId
+            body
+            date
+          }
+          users {
+            uId
+            username
+          }
+        }
+      }`
+    };
+    fetch("http://localhost:8080/graphql", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(graphqlQuery)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(resData => {
+        setUsers({
+          users: resData.data.fetchConversation.users
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    // eslint-disable-next-line
+  }, []);
+
+  let userList = [];
+
+  if (users) {
+    for (let i = 0; i < users.users.length; i++) {
+      userList.push(
+        <Usermini key={users.users[i].uId} name={users.users[i].username} />
+      );
+    }
+  }
+
   return (
     <div className="UserList">
       <div className="UserList--Header">
         <h2>Online</h2>
       </div>
-      <div className="UserList--Main">
-        <Usermini name="Pysio" />
-        <Usermini name="Mysio" />
-      </div>
+      <div className="UserList--Main">{userList}</div>
     </div>
   );
 };

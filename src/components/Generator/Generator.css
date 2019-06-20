@@ -44,7 +44,7 @@
   height: 200%;
   z-index: -1;
   background-color: transparent;
-  background-image: url("http://localhost:3000/assets/avatar2.png");
+  background-image: url("http://localhost:3000/assets/avatar3.png");
   background-repeat: no-repeat;
   background-size: cover;
   animation: rotate 10s infinite linear;

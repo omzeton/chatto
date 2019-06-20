@@ -21,6 +21,7 @@ class App extends Component {
     userId: null,
     username: null,
     socketData: [],
+    socketUsers: [],
     settings: false
   };
   componentDidMount() {
@@ -48,6 +49,10 @@ class App extends Component {
     socket.on("messages", data => {
       if (data.action === "create") {
         this.setState({ socketData: data.post });
+        console.log(data);
+      }
+      if (data.action === "join") {
+        this.setState({ socketUsers: data.post });
         console.log(data);
       }
     });
@@ -106,18 +111,17 @@ class App extends Component {
               <Switch location={location}>
                 <Route
                   path="/chatroom/:id"
-                  exact
-                  render={() => <Chatroom socketData={this.state.socketData} />}
+                  render={() => <Chatroom socketUsers={this.state.socketUsers} socketData={this.state.socketData} />}
                 />
-                <Route path="/generator" exact render={() => <Generator />} />
+                <Route path="/generator" render={() => <Generator />} />
                 } />
-                <Route path="/404" exact render={() => <ErrorScreen />} />
+                <Route path="/404" render={() => <ErrorScreen />} />
                 <Route
                   path="/"
                   exact
                   render={() => <Redirect to="/generator" />}
                 />
-                <Route render={() => <Redirect to="/chatroom" />} />
+                <Route render={() => <Redirect to="/generator" />} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>
@@ -141,7 +145,7 @@ class App extends Component {
                   render={() => <AuthRegister />}
                 />
                 <Route path="/404" exact render={() => <ErrorScreen />} />
-                {/* <Route render={() => <Redirect to="/404" />} /> */}
+                <Route render={() => <Redirect to="/" />} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>

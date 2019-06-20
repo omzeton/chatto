@@ -13,7 +13,6 @@ const ChatboxArea = props => {
       messages: props.socketData.messages,
       users: [...conversation.users]
     });
-    console.log(props.socketData);
     // eslint-disable-next-line
   }, [props.socketData]);
 

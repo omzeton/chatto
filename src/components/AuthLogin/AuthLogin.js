@@ -77,10 +77,11 @@ const AuthLogin = props => {
           localStorage.setItem("token", resData.data.login.token);
           localStorage.setItem('username', resData.data.login.username)
           localStorage.setItem("userId", resData.data.login.userId);
-          const remainingMilliseconds = 60 * 60 * 1000;
+          const remainingMilliseconds = 60 * 60 * 1000 * 24;
           const expiryDate = new Date(
             new Date().getTime() + remainingMilliseconds
           );
+          console.log(remainingMilliseconds);
           localStorage.setItem("expiryDate", expiryDate.toISOString());
           props.setAuth(
             true,
