@@ -20,7 +20,7 @@ const ChatboxArea = props => {
   const loadMessages = e => {
     const graphqlQuery = {
       query: `{
-        fetchConversation(conversationId: "5d0a787817c18e39c4a7aebc") {
+        fetchConversation(conversationId: "${props.convId}") {
           messages {
             uId
             body
@@ -58,7 +58,7 @@ const ChatboxArea = props => {
   return (
     <div className="ChatboxArea">
       <ChatWindow loadMessages={loadMessages} conv={conversation} />
-      <ChatInput loadNewMsg={loadNewMsg} />
+      <ChatInput convId={props.convId} loadNewMsg={loadNewMsg} />
     </div>
   );
 };

@@ -105,7 +105,7 @@ class App extends Component {
             <CSSTransition key={location.key} timeout={400} classNames="fade">
               <Switch location={location}>
                 <Route
-                  path="/chatroom"
+                  path="/chatroom/:id"
                   exact
                   render={() => <Chatroom socketData={this.state.socketData} />}
                 />

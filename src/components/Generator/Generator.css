@@ -2,9 +2,6 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-image: url("http://localhost:3000/assets/bg__auth.png");
   background-position: top center;
   background-size: cover;
@@ -15,6 +12,9 @@
   position: relative;
   width: 45em;
   height: 50em;
+  left:50%;
+  top:3em;
+  transform:translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,12 +148,24 @@
   font-weight: 300;
   font-size: 1.3rem;
   padding-left: 2em;
+  padding-right:2em;
   outline: none;
   border: none;
   box-shadow: 0 0 0 0 var(--w1);
+  text-align: center;
   transition: box-shadow 0.3s;
 }
 
 .Generator .Generator__Container .Container__Btm input[type="text"]:focus {
   box-shadow: 0 7px 20px -3px var(--blu2);
+}
+
+.Generator .Generator__Loading {
+  margin-top:2em;
+  width:100%;
+  height:5em;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  transition:opacity 0.3s;
 }

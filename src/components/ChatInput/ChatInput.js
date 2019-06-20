@@ -15,7 +15,7 @@ const ChatInput = props => {
     const graphqlQuery = {
       query: `
       mutation {
-        createMessage(messageInput:{conversationId: "5d0a787817c18e39c4a7aebc", userId: "${userId}", body: "${
+        createMessage(messageInput:{conversationId: "${props.convId}", userId: "${userId}", body: "${
           msg.body
         }"}) {
           messages {
