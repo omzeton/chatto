@@ -9,7 +9,6 @@
 }
 
 .Other {
-  /* background-color: var(--blu); */
   background: linear-gradient(to right, var(--blu) 0%, var(--blu2) 100%);
   float: left;
   border-top-left-radius: 0;
@@ -29,27 +28,6 @@
 .Self h2 {
   color: var(--b);
 }
-
-/* .Message:after {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  left: -0.5em;
-  top: 0.8em;
-  height: 0px;
-  width: 0px;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 8px solid var(--blu);
-}
-
-.Message.Other:after {
-  border-bottom: 8px solid transparent;
-  border-top: 8px solid transparent;
-  border-left: 8px solid var(--w1);
-  border-right: none;
-  left: calc(100% + -0.1em);
-} */
 
 .Message h2 {
   font-family: var(--bold);
@@ -71,4 +49,17 @@
   background-position: center;
   background-repeat: no-repeat;
   box-shadow: 0 0px 30px -2px rgba(29, 83, 185, 1);
+}
+
+.Message__Timestamp {
+  background:transparent;
+  box-shadow: none;
+  height:1.3em;
+}
+
+.Message__Timestamp h2 {
+  line-height: 0;
+  color:var(--b);
+  font-size: .8rem;
+  font-family: var(--light);
 }

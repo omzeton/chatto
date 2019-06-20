@@ -5,14 +5,15 @@ import Msg from "../Message/Message";
 import "./ChatWindow.css";
 
 const ChatWindow = props => {
-
   useEffect(() => {
     props.loadMessages();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let feed = [],
-  con = props.conv;
+    con = props.conv;
+
+  console.log(con);
 
   if (con.users.length > 0) {
     const userId = localStorage.getItem("userId");
@@ -29,27 +30,36 @@ const ChatWindow = props => {
           </div>
         ),
         prevMsgId =
-          i - 1 === -1
-            ? con.messages[0].uId
-            : con.messages[i - 1].uId;
+          i - 1 === -1 ? con.messages[0].uId : con.messages[i - 1].uId;
 
       innerMessages.push(
-        <Msg
-          method="msg"
-          key={i}
-          sender={label}
-          body={con.messages[i].body}
-        />
+        <Msg method="msg" key={i} sender={label} body={con.messages[i].body} />
       );
       if (i === 0) {
         innerMessages.unshift(
           <Msg method="pin" key={i + 10} sender={label} bgImg={bgImg} />
+        );
+        innerMessages.push(
+          <Msg
+            method="date"
+            key={i + 30}
+            sender={label}
+            body={con.messages[i].date}
+          />
         );
         innerMessages = [];
       }
       if (con.messages[i].uId !== prevMsgId) {
         innerMessages.unshift(
           <Msg method="pin" key={i + 10} sender={label} bgImg={bgImg} />
+        );
+        innerMessages.push(
+          <Msg
+            method="date"
+            key={i + 30}
+            sender={label}
+            body={con.messages[i].date}
+          />
         );
         innerMessages = [];
       }
@@ -59,7 +69,9 @@ const ChatWindow = props => {
 
   return (
     <div className="ChatWindow">
-      <div className="Chat__Container">{feed}</div>
+      <div className="Chat__Container">
+        {feed}
+      </div>
     </div>
   );
 };

@@ -4,10 +4,11 @@ import "./Message.css";
 
 const Message = props => {
   const method = props.method === "pin" ? "Message__Pin" : "";
+  const date = props.method === "date" ? "Message__Timestamp" : method;
   const colors =
     props.sender === "self"
-      ? ["Message", "Self", method].join(" ")
-      : ["Message", "Other", method].join(" ");
+      ? [date, "Message", "Self", date].join(" ")
+      : [date, "Message", "Other"].join(" ");
   return (
     <>
       <div
