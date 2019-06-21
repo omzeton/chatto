@@ -94,7 +94,6 @@ class App extends Component {
 
   settingsOff = () => {
     this.setState({ settings: false });
-    console.log("off");
   };
 
   render() {

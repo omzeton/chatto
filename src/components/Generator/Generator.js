@@ -107,11 +107,12 @@ const Generator = props => {
         console.log(err);
       });
   };
-  const connect = e => {
+  const connect = (e, oldLink) => {
+    let url = oldLink ? oldLink : link;
     setLoading(true);
     const graphQlQuery = {
       query: `{
-        connectToConversation(chatroomLink: "${link}", userId: "${
+        connectToConversation(chatroomLink: "${url}", userId: "${
         userData.userId
       }") {
           chatroomUrl
@@ -152,7 +153,7 @@ const Generator = props => {
       <div
         className="Generated"
         key={l.url}
-        onClick={() => props.history.push(`/chatroom/${l.url}`)}
+        onClick={e => connect(e, l.url)}
       >
         <div className="Generated--Left">
           <p>{l.date}</p>

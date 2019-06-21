@@ -8,7 +8,7 @@ const UserList = props => {
   const [users, setUsers] = useState();
   useEffect(() => {
     setUsers({
-      users: props.socketUsers.users
+      users: props.socketUsers
     });
     // eslint-disable-next-line
   }, [props.socketUsers]);
