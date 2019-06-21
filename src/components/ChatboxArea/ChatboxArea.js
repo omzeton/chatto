@@ -24,6 +24,7 @@ const ChatboxArea = props => {
             uId
             body
             date
+            avatar
           }
           users {
             uId

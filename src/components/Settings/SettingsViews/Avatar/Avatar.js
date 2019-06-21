@@ -24,9 +24,6 @@ const Avatar = props => {
     if (avatarData) {
       const formData = new FormData();
       formData.append("image", avatarData);
-      if (userData.avatar !== "http://localhost:8080/images/no-avatar.jpg") {
-        formData.append("oldPath", userData.avatar);
-      }
       fetch("http://localhost:8080/post-image", {
         method: "PUT",
         body: formData

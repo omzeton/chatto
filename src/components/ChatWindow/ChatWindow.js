@@ -20,10 +20,7 @@ const ChatWindow = props => {
     for (let i = 0; i < con.messages.length; i++) {
       let innerMessages = [],
         label = con.messages[i].uId === userData.userId ? "self" : "other",
-        bgImg =
-          con.messages[i].uId === "5d0a796fd1e4981224d1ee8a"
-            ? "http://localhost:3000/assets/02.jpg"
-            : "http://localhost:3000/assets/04.jpg",
+        bgImg = `http://localhost:8080/${con.messages[i].avatar}`,
         msgStream = (
           <div className={label} key={i + 20}>
             {innerMessages}
@@ -37,7 +34,12 @@ const ChatWindow = props => {
       );
       if (i === 0) {
         innerMessages.unshift(
-          <Msg method="pin" key={i + 10} sender={label} bgImg={bgImg} />
+          <Msg
+            method="pin"
+            key={i + 10}
+            sender={label}
+            bgImg={bgImg}
+          />
         );
         innerMessages.push(
           <Msg
@@ -51,7 +53,12 @@ const ChatWindow = props => {
       }
       if (con.messages[i].uId !== prevMsgId) {
         innerMessages.unshift(
-          <Msg method="pin" key={i + 10} sender={label} bgImg={bgImg} />
+          <Msg
+            method="pin"
+            key={i + 10}
+            sender={label}
+            bgImg={bgImg}
+          />
         );
         innerMessages.push(
           <Msg
@@ -69,9 +76,7 @@ const ChatWindow = props => {
 
   return (
     <div className="ChatWindow">
-      <div className="Chat__Container">
-        {feed}
-      </div>
+      <div className="Chat__Container">{feed}</div>
     </div>
   );
 };
