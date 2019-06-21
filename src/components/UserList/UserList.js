@@ -24,6 +24,7 @@ const UserList = props => {
           users {
             uId
             username
+            avatar
           }
         }
       }`
@@ -52,7 +53,7 @@ const UserList = props => {
   if (users) {
     for (let i = 0; i < users.users.length; i++) {
       userList.push(
-        <Usermini key={users.users[i].uId} name={users.users[i].username} />
+        <Usermini avatar={users.users[i].avatar} key={users.users[i].uId} name={users.users[i].username} />
       );
     }
   }

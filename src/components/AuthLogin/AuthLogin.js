@@ -79,7 +79,7 @@ const AuthLogin = props => {
             token: resData.data.login.token,
             username: resData.data.login.username,
             userId: resData.data.login.userId,
-            avatar: resData.data.login.avatar
+            avatar: `http://localhost:8080/${resData.data.login.avatar}`
           }
           localStorage.setItem("userData", JSON.stringify(userData));
           const remainingMilliseconds = 60 * 60 * 1000 * 24;
