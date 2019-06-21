@@ -9,6 +9,9 @@ const Message = props => {
     props.sender === "self"
       ? [date, "Message", "Self", date].join(" ")
       : [date, "Message", "Other"].join(" ");
+  const img = props.attachment ? (
+    <img alt="Img attachment" src={`${props.attachment}`} />
+  ) : null;
   return (
     <>
       <div
@@ -16,10 +19,11 @@ const Message = props => {
         style={
           props.method === "pin"
             ? { backgroundImage: `url(${props.bgImg})` }
-            : {}
+            : null
         }
       >
         <h2>{props.body}</h2>
+        {img}
       </div>
       <div className="Clear" />
     </>

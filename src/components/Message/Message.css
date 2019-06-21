@@ -1,7 +1,9 @@
 .Message {
   position: relative;
   max-width: 15.5em;
+  min-width: 2.3em;
   height: auto;
+  min-height: 2em;
   margin: 0.3em 1em;
   border-radius: 1em;
   display: inline-block;
@@ -62,4 +64,13 @@
   color:var(--b);
   font-size: .8rem;
   font-family: var(--light);
+}
+
+.Message img {
+  position: relative;
+  left:50%;
+  transform:translateX(-50%);
+  max-width: 12.5em;
+  min-width: 1.3em;
+  padding:1em;
 }

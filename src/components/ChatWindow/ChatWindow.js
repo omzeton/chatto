@@ -21,6 +21,10 @@ const ChatWindow = props => {
       let innerMessages = [],
         label = con.messages[i].uId === userData.userId ? "self" : "other",
         bgImg = `http://localhost:8080/${con.messages[i].avatar}`,
+        attachment =
+          con.messages[i].attachment === "null"
+            ? false
+            : `http://localhost:8080/${con.messages[i].attachment}`,
         msgStream = (
           <div className={label} key={i + 20}>
             {innerMessages}
@@ -30,16 +34,17 @@ const ChatWindow = props => {
           i - 1 === -1 ? con.messages[0].uId : con.messages[i - 1].uId;
 
       innerMessages.push(
-        <Msg method="msg" key={i} sender={label} body={con.messages[i].body} />
+        <Msg
+          attachment={attachment}
+          method="msg"
+          key={i}
+          sender={label}
+          body={con.messages[i].body}
+        />
       );
       if (i === 0) {
         innerMessages.unshift(
-          <Msg
-            method="pin"
-            key={i + 10}
-            sender={label}
-            bgImg={bgImg}
-          />
+          <Msg method="pin" key={i + 10} sender={label} bgImg={bgImg} />
         );
         innerMessages.push(
           <Msg
@@ -53,12 +58,7 @@ const ChatWindow = props => {
       }
       if (con.messages[i].uId !== prevMsgId) {
         innerMessages.unshift(
-          <Msg
-            method="pin"
-            key={i + 10}
-            sender={label}
-            bgImg={bgImg}
-          />
+          <Msg method="pin" key={i + 10} sender={label} bgImg={bgImg} />
         );
         innerMessages.push(
           <Msg
