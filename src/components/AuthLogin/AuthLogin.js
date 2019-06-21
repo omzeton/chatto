@@ -56,6 +56,7 @@ const AuthLogin = props => {
           token
           userId
           username
+          avatar
         }
       }`
     };
@@ -74,14 +75,17 @@ const AuthLogin = props => {
           setValidationError(resData.errors[0].message);
         }
         if (!resData.errors) {
-          localStorage.setItem("token", resData.data.login.token);
-          localStorage.setItem('username', resData.data.login.username)
-          localStorage.setItem("userId", resData.data.login.userId);
+          const userData = {
+            token: resData.data.login.token,
+            username: resData.data.login.username,
+            userId: resData.data.login.userId,
+            avatar: resData.data.login.avatar
+          }
+          localStorage.setItem("userData", JSON.stringify(userData));
           const remainingMilliseconds = 60 * 60 * 1000 * 24;
           const expiryDate = new Date(
             new Date().getTime() + remainingMilliseconds
           );
-          console.log(remainingMilliseconds);
           localStorage.setItem("expiryDate", expiryDate.toISOString());
           props.setAuth(
             true,

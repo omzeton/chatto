@@ -16,14 +16,14 @@
 }
 .fade-enter-active {
   opacity: 1;
-  transition: opacity .3s linear;
+  transition: opacity .3s ease-out;
 }
 .fade-exit {
   opacity: 1;
 }
 .fade-exit-active {
   opacity: 0;
-  transition: opacity .3s linear;
+  transition: opacity .3s ease-out;
 }
 
 .CSST {

@@ -7,10 +7,8 @@ const Navbar = props => {
   const logoutHandler = e => {
     e.preventDefault();
     props.setStateOnLogout();
-    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
     localStorage.removeItem("expiryDate");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userSettings");
   };
   const onLogoClick = e => {
     e.preventDefault();

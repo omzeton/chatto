@@ -16,10 +16,10 @@ const ChatWindow = props => {
   console.log(con);
 
   if (con.users.length > 0) {
-    const userId = localStorage.getItem("userId");
+    const userData = JSON.parse(localStorage.getItem("userData"));
     for (let i = 0; i < con.messages.length; i++) {
       let innerMessages = [],
-        label = con.messages[i].uId === userId ? "self" : "other",
+        label = con.messages[i].uId === userData.userId ? "self" : "other",
         bgImg =
           con.messages[i].uId === "5d0a796fd1e4981224d1ee8a"
             ? "http://localhost:3000/assets/02.jpg"

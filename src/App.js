@@ -25,25 +25,23 @@ class App extends Component {
     settings: false
   };
   componentDidMount() {
-    const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
-    const username = localStorage.getItem("username");
-    if (!token || !expiryDate || !username) {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (!expiryDate || !userData) {
       return;
     }
     if (new Date(expiryDate) <= new Date()) {
       this.logoutHandler();
       return;
     }
-    const userId = localStorage.getItem("userId");
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
     const socket = openSocket("http://localhost:8080");
     this.setState({
       isAuth: true,
-      token: token,
-      userId: userId,
-      username: username
+      token: userData.token,
+      userId: userData.userId,
+      username: userData.username
     });
     this.setAutoLogout(remainingMilliseconds);
     socket.on("messages", data => {
@@ -75,10 +73,8 @@ class App extends Component {
       userId: null,
       username: null
     });
-    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
     localStorage.removeItem("expiryDate");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("username");
     this.props.history.push("/");
   };
 
@@ -94,7 +90,6 @@ class App extends Component {
 
   settingsOn = () => {
     this.setState({ settings: true });
-    console.log("on");
   };
 
   settingsOff = () => {
@@ -111,7 +106,12 @@ class App extends Component {
               <Switch location={location}>
                 <Route
                   path="/chatroom/:id"
-                  render={() => <Chatroom socketUsers={this.state.socketUsers} socketData={this.state.socketData} />}
+                  render={() => (
+                    <Chatroom
+                      socketUsers={this.state.socketUsers}
+                      socketData={this.state.socketData}
+                    />
+                  )}
                 />
                 <Route path="/generator" render={() => <Generator />} />
                 } />

@@ -11,11 +11,11 @@ const ChatInput = props => {
   };
   const sendMessage = e => {
     e.preventDefault();
-    const userId = localStorage.getItem("userId");
+    const userData = JSON.parse(localStorage.getItem("userId"));
     const graphqlQuery = {
       query: `
       mutation {
-        createMessage(messageInput:{conversationId: "${props.convId}", userId: "${userId}", body: "${
+        createMessage(messageInput:{conversationId: "${props.convId}", userId: "${userData.userId}", body: "${
           msg.body
         }"}) {
           messages {

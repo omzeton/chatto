@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
 import Loader from "../Loader/Loader";
@@ -8,13 +8,74 @@ import "./Generator.css";
 const Generator = props => {
   const [link, setLink] = useState("");
   const [loading, setLoading] = useState(false);
-  const generateLink = e => {
-    setLoading(true);
-    const userId = localStorage.getItem("userId");
+  const [linkList, setLinkList] = useState([]);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
     const graphQlQuery = {
       query: `
       {
-        createLink(userId: "${userId}"){
+        getPreviousConversations(userId: "${userData.userId}") {
+          conversations {
+            url
+            date
+          }
+        }
+      }
+      `
+    };
+    fetch("http://localhost:8080/graphql", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(graphQlQuery)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(resData => {
+        setLinkList(resData.data.getPreviousConversations.conversations);
+        console.log(resData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  function getCurrentDate() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let minutes = today.getMinutes();
+    let hours = today.getHours();
+    let yyyy = today.getFullYear();
+    let date;
+
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    if (hours < 10) {
+      hours = "0" + hours;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    date = yyyy + "/" + mm + "/" + dd + " " + hours + ":" + minutes;
+
+    return date;
+  }
+
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
+  const generateLink = e => {
+    setLoading(true);
+    const graphQlQuery = {
+      query: `
+      {
+        createLink(userId: "${userData.userId}"){
           chatroomLink
         }
       }
@@ -31,6 +92,14 @@ const Generator = props => {
       .then(resData => {
         setLoading(false);
         setLink(resData.data.createLink.chatroomLink);
+        setLinkList([
+          ...linkList,
+          {
+            url: resData.data.createLink.chatroomLink,
+            date: getCurrentDate()
+          }
+        ]);
+        console.log(linkList);
         console.log(resData);
       })
       .catch(err => {
@@ -39,12 +108,12 @@ const Generator = props => {
       });
   };
   const connect = e => {
-    const userId = localStorage.getItem("userId");
-    console.log(link);
     setLoading(true);
     const graphQlQuery = {
       query: `{
-        connectToConversation(chatroomLink: "${link}", userId: "${userId}") {
+        connectToConversation(chatroomLink: "${link}", userId: "${
+        userData.userId
+      }") {
           chatroomUrl
         }
       }`
@@ -69,15 +138,42 @@ const Generator = props => {
         console.log(err);
       });
   };
+
   const onLinkChange = e => {
     setLink(e.target.value);
   };
-  const username = localStorage.getItem("username");
+
   const loadingStyle = loading ? { opacity: 1 } : { opacity: 0 };
+
+  const links = [];
+
+  for (let l of linkList) {
+    links.push(
+      <div
+        className="Generated"
+        key={l.url}
+        onClick={() => props.history.push(`/chatroom/${l.url}`)}
+      >
+        <div className="Generated--Left">
+          <p>{l.date}</p>
+        </div>
+        <div className="Generated--Right">
+          <h2>{l.url}</h2>
+        </div>
+      </div>
+    );
+  }
+
+  let avatarbg = userData ? userData.avatar : "",
+    username = userData ? userData.username : "";
+
   return (
     <div className="Generator">
       <div className="Generator__Container">
-        <div className="Container__Top__Avatar" />
+        <div
+          className="Container__Top__Avatar"
+          style={{ backgroundImage: `url(${avatarbg})` }}
+        />
         <div className="Container__Top__Heading">
           <h2>
             Welcome back <span>{username}</span>!
@@ -101,7 +197,7 @@ const Generator = props => {
         <div className="Container__Btm">
           <input
             type="text"
-            placeholder="..."
+            placeholder="Chatroom link"
             value={link}
             onChange={e => onLinkChange(e)}
           />
@@ -112,58 +208,9 @@ const Generator = props => {
       </div>
       <div className="Generator__Rooms">
         <div className="Generator__Rooms__Header">
-          <h2>Last few conversations</h2>
+          <h2>Previously generated</h2>
         </div>
-        <div className="Generator__Links">
-
-
-          <div className="Generated">
-            <div className="Generated--Left">
-              <p>2019/06/19 20:03</p>
-            </div>
-            <div className="Generated--Right">
-              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
-            </div>
-          </div>
-
-          <div className="Generated">
-            <div className="Generated--Left">
-              <p>2019/06/19 20:03</p>
-            </div>
-            <div className="Generated--Right">
-              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
-            </div>
-          </div>
-
-          <div className="Generated">
-            <div className="Generated--Left">
-              <p>2019/06/19 20:03</p>
-            </div>
-            <div className="Generated--Right">
-              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
-            </div>
-          </div>
-
-          <div className="Generated">
-            <div className="Generated--Left">
-              <p>2019/06/19 20:03</p>
-            </div>
-            <div className="Generated--Right">
-              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
-            </div>
-          </div>
-
-          <div className="Generated">
-            <div className="Generated--Left">
-              <p>2019/06/19 20:03</p>
-            </div>
-            <div className="Generated--Right">
-              <h2>2d24a9e29ae844dc3dcf93495815b742045dffa6c6b35273</h2>
-            </div>
-          </div>
-
-
-        </div>
+        <div className="Generator__Links">{links}</div>
       </div>
     </div>
   );

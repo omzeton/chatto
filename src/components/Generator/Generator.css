@@ -48,8 +48,9 @@
   height: 12em;
   border-radius: 50%;
   background-color: var(--w1);
-  background-image: url("http://localhost:3000/assets/04.jpg");
+  background-image: url("http://localhost:3000/assets/01.jpg");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   border: 2px dashed var(--blu);
   box-shadow: 0 0 120px 0px var(--blu);

@@ -6,8 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity:1;
-  transition:opacity 0.4s;
+  opacity: 1;
+  transition: opacity 0.4s;
 }
 
 .Settings:before {
@@ -31,11 +31,6 @@
 }
 
 .Settings__Close {
-  position: absolute;
-  left: 50%;
-  top: calc(50% - 18em);
-  transform: translateX(-50%) translateY(-50%);
-  background-color: red;
   width: 13em;
   height: 3em;
   display: flex;
@@ -45,11 +40,11 @@
   border-radius: 0.75em;
   background-color: var(--w1);
   cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: box-shadow 0.3s;
 }
 
 .Settings__Close:hover {
-  box-shadow: 0 7px 30px -10px var(--blu);
+  box-shadow: 0 7px 30px -10px var(--b);
 }
 
 .Settings__Close h2 {
@@ -76,97 +71,34 @@
   font-size: 2rem;
 }
 
-.Settings__Container__Mid .Settings__Header {
+.Settings__Container__Mid .Mid__Btn {
   width: 80%;
   height: 2em;
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.Settings__Container__Mid .Settings__Header p {
-  line-height: 0;
+.Settings__Container__Mid .Mid__Btn button {
+  background-color: transparent;
+  width: 13em;
+  border:1px solid var(--w1);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 0.75em;
+  cursor: pointer;
   font-family: var(--light);
   font-weight: 200;
   color: var(--w1);
+  font-size: 1rem;
+  transition: color 0.3s;
+  padding:.5em 0;
+  transition:color 0.3s, background-color 0.3s;
 }
 
-.Settings__Container__Mid .Settings__Control {
-  width: 80%;
-  height: 3em;
-}
-
-.Image__Input {
-  width: 3em;
-  height: 2em;
-  border-radius: 0.3em;
-  border: none;
-  cursor: pointer;
-  background-color: var(--w1);
-  outline: none;
-  box-shadow: 0 0 0 0 var(--b);
-  background-image: url("http://localhost:3000/assets/img.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 40%;
-  transition: box-shadow 0.3s;
-}
-
-.Image__Input:hover {
-  box-shadow: 0 7px 20px -3px var(--b);
-}
-
-.Settings__Container__Mid .Settings__Control input[type="text"],
-.Settings__Container__Mid .Settings__Control input[type="password"] {
-  position: relative;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid var(--w1);
-  outline: none;
-  font-size: 0.8em;
-  color: var(--w1);
-  box-shadow: 0 0 0 0 var(--b);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.Settings__Container__Mid .Settings__Control input[type="text"]:focus,
-.Settings__Container__Mid .Settings__Control input[type="password"]:focus {
-  border-color: var(--b);
-  box-shadow: 0 7px 20px -10px var(--b);
-}
-
-.Settings__Container__Btm button {
-  width: 12em;
-  height: 4em;
-  background-color: var(--w1);
-  font-family: var(--bold);
-  outline: none;
-  color: var(--blu);
-  border: none;
-  border-radius: 0.75em;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 0 0 0 var(--b);
-  transition: box-shadow 0.3s;
-}
-
-.Settings__Container__Btm button:hover {
-  box-shadow: 0 7px 20px -3px var(--b);
-}
-
-.Settings__Container__Mid .Settings__Control .Delete__Btn {
-  border-radius: 0.3em;
-  border: none;
-  cursor: pointer;
-  background-color: var(--w1);
-  outline: none;
-  box-shadow: 0 0 0 0 var(--b);
-  transition: box-shadow 0.3s;
-  font-family: var(--bold);
-}
-
-.Settings__Container__Mid .Settings__Control .Delete__Btn:hover {
-  box-shadow: 0 7px 20px -3px var(--b);
-}
-
-.Settings__Container__Btm button:hover {
-  background-color: var(--w1);
-  color: var(--blu);
+.Settings__Container__Mid .Mid__Btn button:hover {
+  color:var(--blu);
+  background-color:var(--w1);
 }

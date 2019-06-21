@@ -1,59 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Avatar from './SettingsViews/Avatar/Avatar';
+import Username from './SettingsViews/Username/Username';
+import Password from './SettingsViews/Password/Password';
+import Account from './SettingsViews/Account/Account';
 
 import "./Settings.css";
 
 const Settings = props => {
-  let imageInput,
-    settingsStyle = props.settingsOn
+  const [view, setView] = useState("init");
+  let settingsStyle = props.settingsOn
       ? { opacity: 1, zIndex: 9999 }
-      : { opacity: 0, zIndex: -2 };
+      : { opacity: 0, zIndex: -2 },
+    settings;
 
+  switch (view) {
+    case "init":
+      settings = [
+        <div className="Mid__Btn">
+          <button>Change avatar</button>
+        </div>,
+        <div className="Mid__Btn">
+          <button>Change username</button>
+        </div>,
+        <div className="Mid__Btn">
+          <button>Change password</button>
+        </div>,
+        <div className="Mid__Btn">
+          <button>Terminate account</button>
+        </div>
+      ];
+      break;
+    case "avatar":
+      settings = <Avatar />;
+      break;
+    case "username":
+      settings = <Username />;
+      break;
+    case "password":
+      settings = <Password />;
+      break;
+    case "account":
+      settings = <Account />;
+      break;
+    default:
+      break;
+  }
   return (
     <div className="Settings" style={settingsStyle}>
       <div className="Settings__Container">
-        <div className="Settings__Close" onClick={props.settingsOff}>
-          <h2>Close settings</h2>
-        </div>
         <div className="Settings__Container__Top">
           <h2>Settings</h2>
         </div>
-        <div className="Settings__Container__Mid">
-          <div className="Settings__Header">
-            <p>Change avatar</p>
-          </div>
-          <div className="Settings__Control">
-            <input
-              type="file"
-              style={{ display: "none" }}
-              ref={input => (imageInput = input)}
-            />
-            <button
-              className="Image__Input"
-              onClick={() => imageInput.click()}
-            />
-          </div>
-          <div className="Settings__Header">
-            <p>Change username</p>
-          </div>
-          <div className="Settings__Control">
-            <input type="text" />
-          </div>
-          <div className="Settings__Header">
-            <p>Change password</p>
-          </div>
-          <div className="Settings__Control">
-            <input type="password" />
-            <input type="password" />
-          </div>
-          <div className="Settings__Header">
-            <p>Delete account</p>
-          </div>
-          <div className="Settings__Control">
-            <button className="Delete__Btn">Confirm</button>
-          </div>
-        </div>
+        <div className="Settings__Container__Mid" />
         <div className="Settings__Container__Btm">
-          <button>Submit changes</button>
+          <div className="Settings__Close" onClick={props.settingsOff}>
+            <h2>Close settings</h2>
+          </div>
         </div>
       </div>
     </div>
