@@ -48,7 +48,6 @@
   height: 12em;
   border-radius: 50%;
   background-color: var(--w1);
-  background-image: url("http://localhost:3000/assets/01.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -66,7 +65,7 @@
   height: 200%;
   z-index: -1;
   background-color: transparent;
-  background-image: url("http://localhost:3000/assets/avatar3.png");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Favatar3.png?alt=media&token=b87410ac-c084-45e2-b04c-4c02a33cda50");
   background-repeat: no-repeat;
   background-size: cover;
   animation: rotate 10s infinite linear;
@@ -239,8 +238,8 @@
 }
 
 .Generator__Rooms .Generator__Links .Generated {
-  width:38em;
-  height:4em;
+  width: 38em;
+  height: 4em;
   display: grid;
   grid-template-columns: 8em 1fr;
   background-color: var(--w1);
@@ -249,11 +248,11 @@
   border-radius: 0.75em;
   box-shadow: 0 7px 20px -3px var(--blu);
   transition: background-color 0.3s;
-  margin-bottom:2em;
+  margin-bottom: 2em;
 }
 
 .Generator__Rooms .Generator__Links .Generated:last-child {
-  margin-bottom:10em;
+  margin-bottom: 10em;
 }
 
 .Generator__Rooms .Generator__Links .Generated .Generated--Left {
@@ -272,7 +271,7 @@
   transform: translateY(-50%);
   top: 50%;
   background-color: var(--blu);
-  transition:background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 .Generator__Rooms .Generator__Links .Generated .Generated--Left p {
@@ -280,7 +279,7 @@
   color: var(--b);
   font-family: var(--light);
   font-size: 0.9rem;
-  transition:color 0.3s;
+  transition: color 0.3s;
 }
 
 .Generator__Rooms .Generator__Links .Generated .Generated--Right {
@@ -295,21 +294,61 @@
   color: var(--b);
   font-family: var(--bold);
   font-size: 1rem;
-  transition:color 0.3s;
+  transition: color 0.3s;
 }
 
 .Generator__Rooms .Generator__Links .Generated:hover {
-  background-color:var(--blu);
+  background-color: var(--blu);
 }
 
 .Generator__Rooms .Generator__Links .Generated:hover .Generated--Left p {
-  color:var(--w1);
+  color: var(--w1);
 }
 
 .Generator__Rooms .Generator__Links .Generated:hover .Generated--Right h2 {
-  color:var(--w1);
+  color: var(--w1);
 }
 
 .Generator__Rooms .Generator__Links .Generated:hover .Generated--Left:after {
-  background-color:var(--w1);
+  background-color: var(--w1);
+}
+
+@media (min-width: 720px) {
+  .Generator .Generator__Container {
+    width: 45em;
+  }
+  .Generator .Generator__Container .Container__Mid .Mid__Btn button {
+    width: 13em;
+    height: 3em;
+    font-size: 1.3rem;
+  }
+  .Generator__Rooms .Generator__Links .Generated {
+    width: 38em;
+  }
+  .Generator__Rooms .Generator__Links .Generated .Generated--Right h2 {
+    font-size: 1rem;
+  }
+  .Generator__Rooms .Generator__Links .Generated .Generated--Left p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .Generator .Generator__Container {
+    width: 100%;
+  }
+  .Generator .Generator__Container .Container__Mid .Mid__Btn button {
+    width: 40vw;
+    height: 3em;
+    font-size: 1.1rem;
+  }
+  .Generator__Rooms .Generator__Links .Generated {
+    width: 90vw;
+  }
+  .Generator__Rooms .Generator__Links .Generated .Generated--Right h2 {
+    font-size: 2.2vw;
+  }
+  .Generator__Rooms .Generator__Links .Generated .Generated--Left p {
+    font-size:2.2vw;
+  }
 }

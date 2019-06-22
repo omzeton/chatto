@@ -4,7 +4,7 @@
   height: 100%;
   overflow: hidden;
   background-color: var(--w1);
-  background-image:url('http://localhost:3000/assets/tb04_2.png');
+  background-image:url('https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Ftb04_2.png?alt=media&token=53ef205f-03d5-476f-ac11-99ccd75b42d0');
   background-repeat:repeat;
   background-size:20em;
 }

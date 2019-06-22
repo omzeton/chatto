@@ -19,7 +19,7 @@
 .ErrorScreen .ErrorScreen__Container .Error--SVG {
   width: 100%;
   height: 18em;
-  background-image: url("http://localhost:3000/assets/404.svg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2F404.svg?alt=media&token=b006e8ec-f7d9-455c-801a-1a8244ab3154");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 20em;

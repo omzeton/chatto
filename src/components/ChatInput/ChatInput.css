@@ -12,7 +12,7 @@
 .ChatInput .ChatInput__Form {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 3.5em;
+  grid-template-columns: 1fr 5.3em;
 }
 
 .ChatInput .ChatInput__Form__Input {
@@ -93,7 +93,7 @@
 }
 
 .ChatInput .ChatInput__Emoji {
-  background-image: url("http://localhost:3000/assets/attachment.svg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fattachment.svg?alt=media&token=aba05434-ac52-4297-8933-38bf83e14cbc");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 1.3em;
@@ -110,7 +110,7 @@
   z-index: 9999;
   border: none;
   background-color: var(--blu);
-  background-image: url("http://localhost:3000/assets/send2.svg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fsend2.svg?alt=media&token=700e6136-eaf4-49ad-8b69-bdeaaa2c3b3a");
   background-position: 48% 50%;
   background-repeat: no-repeat;
   border-radius:1em;

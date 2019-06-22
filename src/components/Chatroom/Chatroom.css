@@ -6,3 +6,15 @@
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 12em;
 }
+
+@media (min-width: 720px) {
+  .Chatroom {
+    grid-template-columns: 1fr 12em;
+  }
+}
+
+@media (max-width: 720px) {
+  .Chatroom {
+    grid-template-columns: 1fr 9em;
+  }
+}
