@@ -16,7 +16,7 @@ const ChatInput = props => {
     e.preventDefault();
     const userData = JSON.parse(localStorage.getItem("userData"));
     let graphqlQuery;
-
+    console.log(msg.body);
     if (attachment) {
       const formData = new FormData();
       formData.append("image", attachment);
@@ -33,7 +33,7 @@ const ChatInput = props => {
         mutation {
           createMessage(messageInput:{conversationId: "${
             props.convId
-          }", userId: "${userData.userId}", body: "${msg.body}", avatar: "${
+          }", userId: "${userData.userId}", body: """${msg.body}""", avatar: "${
               userData.avatar.split("http://localhost:8080/")[1]
             }", attachment: "${imageUrl}"}) {
             messages {
@@ -70,7 +70,7 @@ const ChatInput = props => {
       mutation {
         createMessage(messageInput:{conversationId: "${
           props.convId
-        }", userId: "${userData.userId}", body: "${msg.body}", avatar: "${
+        }", userId: "${userData.userId}", body: """${msg.body}""", avatar: "${
           userData.avatar.split("http://localhost:8080/")[1]
         }", attachment: "null"}) {
           messages {

@@ -5,6 +5,7 @@ import "./Avatar.css";
 const Avatar = props => {
   const [previewImage, setPreviewImage] = useState(undefined);
   const [avatarData, setAvatarData] = useState();
+  const [error, setError] = useState("");
 
   let imageInput;
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -21,6 +22,7 @@ const Avatar = props => {
   };
 
   const setNewAvatar = event => {
+    setError("");
     if (avatarData) {
       const formData = new FormData();
       formData.append("image", avatarData);
@@ -61,6 +63,7 @@ const Avatar = props => {
         })
         .then(resData => {
           console.log(resData);
+          setError(resData.data.changeUserAvatar.message);
         })
         .catch(err => {
           console.log(err);
@@ -71,6 +74,7 @@ const Avatar = props => {
   };
 
   let avatarPreview = previewImage ? previewImage : userData.avatar;
+  let popup = error === "" ? "" : error;
 
   return (
     <div className="Avatar">
@@ -94,6 +98,12 @@ const Avatar = props => {
           >
             Confirm
           </button>
+          <div
+            className="Img__Popup"
+            style={error === "" ? { opacity: 0 } : { opacity: 1 }}
+          >
+            <p>{popup}</p>
+          </div>
         </div>
       </div>
     </div>

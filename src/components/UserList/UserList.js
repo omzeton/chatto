@@ -14,6 +14,7 @@ const UserList = props => {
     // eslint-disable-next-line
   }, [props.socketUsers]);
   useEffect(() => {
+    console.log(props.convId);
     const graphqlQuery = {
       query: `{
         fetchConversation(conversationId: "${props.convId}") {

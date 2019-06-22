@@ -1,75 +1,96 @@
 .Avatar {
-    width:85%;
-    height: 100%;
+  width: 85%;
+  height: 100%;
 }
 
 .Avatar .Avatar__Preview {
-    position: relative;
-    left:50%;
-    transform:translateX(-50%);
-    width:10em;
-    height:10em;
-    border-radius:50%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border:1px solid var(--w1);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid var(--w1);
 }
 
 .Avatar .Avatar__Input {
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .Avatar .Avatar__Input h2 {
-    font-family: var(--light);
-    margin-top:1.5em;
-    color:var(--w1);
-    font-weight: 300;
-    font-size: 1.1rem;
+  font-family: var(--light);
+  margin-top: 1.5em;
+  color: var(--w1);
+  font-weight: 300;
+  font-size: 1.1rem;
 }
 
 .Avatar .Avatar__Input .Avatar__Btns {
-    width:70%;
-    height:3em;
-    display:flex;
-    align-items: center;
-    justify-content: center;
+  width: 70%;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Avatar .Avatar__Input .Avatar__Btns .Img__Btn {
-    width:2.5em;
-    height:2em;
-    border-radius:0.25rem;
-    border:none;
-    background-color:var(--w1);
-    background-image:url('https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fimg.svg?alt=media&token=00508532-f3eb-4291-b52e-e2223d94d317');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:1.3em;
-    box-shadow: 0 7px 30px -10px var(--w1);
-    cursor: pointer;
-    outline:none;
+  width: 2.5em;
+  height: 2em;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: var(--w1);
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fimg.svg?alt=media&token=00508532-f3eb-4291-b52e-e2223d94d317");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1.3em;
+  box-shadow: 0 7px 30px -10px var(--w1);
+  cursor: pointer;
+  outline: none;
 }
 
 .Avatar .Avatar__Input .Avatar__Btns .Img__Confirm {
-    background-color:var(--blu);
-    font-family:var(--bold);
-    outline: none;
-    color:var(--w1);
-    border:1px solid var(--w1);
-    border-radius:.75em;
-    padding:.5em .7em;
-    font-weight: 900;
-    cursor: pointer;
-    box-shadow:0 7px 20px -3px var(--blu);
-    transition:background-color .3s, color .3s;
-    margin-left:1em;
-  }
-  
-  .Avatar .Avatar__Input .Avatar__Btns .Img__Confirm:hover {
-    background-color:var(--w1);
-    color:var(--blu);
-  }
+  background-color: var(--blu);
+  font-family: var(--bold);
+  outline: none;
+  color: var(--w1);
+  border: 1px solid var(--w1);
+  border-radius: 0.75em;
+  padding: 0.5em 0.7em;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 7px 20px -3px var(--blu);
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 1em;
+}
+
+.Avatar .Avatar__Input .Avatar__Btns .Img__Confirm:hover {
+  background-color: var(--w1);
+  color: var(--blu);
+}
+
+.Avatar .Img__Popup {
+  position: absolute;
+  background-color: var(--w1);
+  width: auto;
+  height: 1.7em;
+  border-radius: 0.3em;
+  margin-top: 2.5em;
+  box-shadow: 0 7px 20px -3px var(--w1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:opacity .3s;
+}
+
+.Avatar .Img__Popup p {
+  font-family: var(--light);
+  font-weight: 400;
+  font-size: .9rem;
+  padding:0 2em;
+}
