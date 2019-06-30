@@ -209,7 +209,7 @@ const Generator = props => {
       </div>
       <div className="Generator__Rooms">
         <div className="Generator__Rooms__Header">
-          <h2>Previously generated</h2>
+          <h2>Previously generated links</h2>
         </div>
         <div className="Generator__Links">{links}</div>
       </div>
