@@ -107,6 +107,7 @@ class App extends Component {
                   path="/chatroom/:id"
                   render={() => (
                     <Chatroom
+                      isAuth={this.state.isAuth}
                       socketUsers={this.state.socketUsers}
                       socketData={this.state.socketData}
                     />
@@ -160,6 +161,7 @@ class App extends Component {
         />
         {this.state.isAuth ? (
           <Settings
+            onLogout={this.logoutHandler}
             settingsOff={this.settingsOff}
             toggleSettings={this.toggleSettings}
             settingsOn={this.state.settings}

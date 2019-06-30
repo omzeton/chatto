@@ -30,7 +30,10 @@ const Avatar = props => {
         method: "PUT",
         body: formData
       })
-        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          return res.json();
+        })
         .then(fileResData => {
           const imageUrl = fileResData.filePath;
           console.log(imageUrl);
@@ -69,12 +72,11 @@ const Avatar = props => {
           console.log(err);
         });
     } else {
-      console.log("No image specified");
+      setError("No image specified");
     }
   };
 
   let avatarPreview = previewImage ? previewImage : userData.avatar;
-  let popup = error === "" ? "" : error;
 
   return (
     <div className="Avatar">
@@ -102,7 +104,7 @@ const Avatar = props => {
             className="Img__Popup"
             style={error === "" ? { opacity: 0 } : { opacity: 1 }}
           >
-            <p>{popup}</p>
+            <p>{error === "" ? "" : error}</p>
           </div>
         </div>
       </div>

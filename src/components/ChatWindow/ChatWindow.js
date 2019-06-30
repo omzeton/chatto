@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Msg from "../Message/Message";
 
 import "./ChatWindow.css";
 
 const ChatWindow = props => {
-  props.loadMessages();
+  useEffect(() => {
+    props.loadMessages();
+    // eslint-disable-next-line
+  }, []);
 
   let feed = [],
     con = props.conv;

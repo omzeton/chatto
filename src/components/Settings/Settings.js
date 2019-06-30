@@ -42,7 +42,7 @@ const Settings = props => {
       settings = <Password />;
       break;
     case "account":
-      settings = <Account />;
+      settings = <Account onLogout={props.onLogout}/>;
       break;
     default:
       break;

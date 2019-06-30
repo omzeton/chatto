@@ -6,6 +6,7 @@ import "./UserList.css";
 
 const UserList = props => {
   const [users, setUsers] = useState();
+
   useEffect(() => {
     setUsers({
       users: props.socketUsers.users
@@ -13,6 +14,7 @@ const UserList = props => {
     console.log(props.socketUsers);
     // eslint-disable-next-line
   }, [props.socketUsers]);
+
   useEffect(() => {
     console.log(props.convId);
     const graphqlQuery = {
@@ -40,6 +42,7 @@ const UserList = props => {
         return res.json();
       })
       .then(resData => {
+        console.log(resData);
         setUsers({
           users: resData.data.fetchConversation.users
         });

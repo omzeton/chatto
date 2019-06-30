@@ -1,0 +1,10 @@
+.Password .Password__Form input[type="text"] {
+  background-color: transparent;
+  color: var(--w1);
+  border-radius: 0.25em;
+  border: 1px solid var(--w1);
+  outline: none;
+  font-family: var(--light);
+  font-weight: 300;
+  padding:.6em 1em;
+}

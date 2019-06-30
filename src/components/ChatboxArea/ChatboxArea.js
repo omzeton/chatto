@@ -58,7 +58,7 @@ const ChatboxArea = props => {
   };
   return (
     <div className="ChatboxArea">
-      <ChatWindow loadMessages={loadMessages} conv={conversation} />
+      <ChatWindow isAuth={props.isAuth} loadMessages={loadMessages} conv={conversation} />
       <ChatInput convId={props.convId} loadNewMsg={loadNewMsg} />
     </div>
   );

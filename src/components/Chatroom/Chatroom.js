@@ -10,7 +10,7 @@ const Chatroom = props => {
   const convId = props.match.params.id;
   return (
     <div className="Chatroom">
-      <ChatboxArea convId={convId} socketData={props.socketData} />
+      <ChatboxArea isAuth={props.isAuth} convId={convId} socketData={props.socketData} />
       <UserList socketUsers={props.socketUsers} convId={convId}/>
     </div>
   );
