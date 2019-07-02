@@ -15,6 +15,6 @@
 
 @media (max-width: 720px) {
   .Chatroom {
-    grid-template-columns: 1fr 9em;
+    grid-template-columns: 1fr;
   }
 }

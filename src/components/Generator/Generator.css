@@ -2,7 +2,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: url("http://localhost:3000/assets/bg__auth.png");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fbg__auth.png?alt=media&token=116bcea1-8b96-412e-b993-9569817b9d91");
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -168,8 +168,7 @@
   font-family: var(--light);
   font-weight: 300;
   font-size: 1.3rem;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding: 0 2em;
   outline: none;
   border: none;
   box-shadow: 0 0 0 0 var(--w1);
@@ -317,6 +316,13 @@
   .Generator .Generator__Container {
     width: 45em;
   }
+  .Generator .Generator__Container .Container__Top__Avatar {
+    width: 12em;
+    height: 12em;
+  }
+  .Generator .Generator__Container .Container__Top__Heading h2 {
+    font-size: 2rem;
+  }
   .Generator .Generator__Container .Container__Mid .Mid__Btn button {
     width: 13em;
     height: 3em;
@@ -331,16 +337,33 @@
   .Generator__Rooms .Generator__Links .Generated .Generated--Left p {
     font-size: 0.9rem;
   }
+  .Generator__Rooms .Generator__Rooms__Header h2 {
+    font-size: 2rem;
+  }
+  .Generator .Generator__Container .Container__Btm input[type="text"] {
+    font-size: 1.3rem;
+    height: 95%;
+  }
+  .Generator__Rooms .Generator__Links .Generated {
+    grid-template-columns: 8em 1fr;
+  }
 }
 
 @media (max-width: 720px) {
   .Generator .Generator__Container {
     width: 100%;
   }
+  .Generator .Generator__Container .Container__Top__Avatar {
+    width: 8em;
+    height: 8em;
+  }
+  .Generator .Generator__Container .Container__Top__Heading h2 {
+    font-size: 1.6rem;
+  }
   .Generator .Generator__Container .Container__Mid .Mid__Btn button {
     width: 40vw;
     height: 3em;
-    font-size: 1.1rem;
+    font-size: .85rem;
   }
   .Generator__Rooms .Generator__Links .Generated {
     width: 90vw;
@@ -349,6 +372,16 @@
     font-size: 2.2vw;
   }
   .Generator__Rooms .Generator__Links .Generated .Generated--Left p {
-    font-size:2.2vw;
+    font-size: 2.2vw;
+  }
+  .Generator__Rooms .Generator__Rooms__Header h2 {
+    font-size: 1.5rem;
+  }
+  .Generator .Generator__Container .Container__Btm input[type="text"] {
+    font-size: 1rem;
+    height: 80%;
+  }
+  .Generator__Rooms .Generator__Links .Generated {
+    grid-template-columns: 23% 1fr;
   }
 }

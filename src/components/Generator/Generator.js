@@ -24,7 +24,7 @@ const Generator = props => {
       }
       `
     };
-    fetch("http://localhost:8080/graphql", {
+    fetch("https://chatto--api.herokuapp.com/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphQlQuery)
@@ -81,7 +81,7 @@ const Generator = props => {
       }
       `
     };
-    fetch("http://localhost:8080/graphql", {
+    fetch("https://chatto--api.herokuapp.com/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphQlQuery)
@@ -119,7 +119,7 @@ const Generator = props => {
         }
       }`
     };
-    fetch("http://localhost:8080/graphql", {
+    fetch("https://chatto--api.herokuapp.com/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphQlQuery)

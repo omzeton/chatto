@@ -27,7 +27,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* filter:hue-rotate(-320deg); */
 }
 
 code {

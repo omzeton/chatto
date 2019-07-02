@@ -42,3 +42,15 @@
 .UserList::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px var(--w2);
 }
+
+@media (min-width: 720px) {
+  .UserList {
+    display:grid;
+  }
+}
+
+@media (max-width: 720px) {
+  .UserList {
+    display:none;
+  }
+}

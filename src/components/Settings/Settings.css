@@ -83,7 +83,7 @@
 .Settings__Container__Mid .Mid__Btn button {
   background-color: transparent;
   width: 13em;
-  border:1px solid var(--w1);
+  border: 1px solid var(--w1);
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -94,11 +94,25 @@
   color: var(--w1);
   font-size: 1rem;
   transition: color 0.3s;
-  padding:.5em 0;
-  transition:color 0.3s, background-color 0.3s;
+  padding: 0.5em 0;
+  transition: color 0.3s, background-color 0.3s;
 }
 
 .Settings__Container__Mid .Mid__Btn button:hover {
-  color:var(--blu);
-  background-color:var(--w1);
+  color: var(--blu);
+  background-color: var(--w1);
+}
+
+@media (min-width: 720px) {
+  .Settings .Settings__Container {
+    width: 23em;
+    height: 30em;
+  }
+}
+
+@media (max-width: 720px) {
+  .Settings .Settings__Container {
+    width: 85%;
+    height: 28em;
+  }
 }
