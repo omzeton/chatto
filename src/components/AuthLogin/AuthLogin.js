@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import openSocket from "socket.io-client";
 import { withRouter } from "react-router-dom";
 import Loader from "../Loader/Loader";
 
@@ -80,7 +81,20 @@ const AuthLogin = props => {
             username: resData.data.login.username,
             userId: resData.data.login.userId,
             avatar: `http://localhost:8080/${resData.data.login.avatar}`
-          }
+          };
+          const socket = openSocket("http://localhost:8080");
+          socket.on("messages", data => {
+            if (data.action === "create") {
+              props.setSocketData(data.post);
+              // this.setState({ socketData: data.post });
+              console.log(data);
+            }
+            if (data.action === "join") {
+              props.setSocketUsers(data.post);
+              // this.setState({ socketUsers: data.post });
+              console.log(data);
+            }
+          });
           localStorage.setItem("userData", JSON.stringify(userData));
           const remainingMilliseconds = 60 * 60 * 1000 * 24;
           const expiryDate = new Date(

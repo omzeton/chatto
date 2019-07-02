@@ -13,8 +13,6 @@ const ChatWindow = props => {
   let feed = [],
     con = props.conv;
 
-  console.log(con);
-
   if (con.users.length > 0) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     for (let i = 0; i < con.messages.length; i++) {

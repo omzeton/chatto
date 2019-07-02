@@ -56,6 +56,9 @@ class App extends Component {
     });
   }
 
+  setSocketData = data => this.setState({ socketData: data });
+  setSocketUsers = posts => this.setState({ socketUsers: posts });
+
   setInnerAuth = (isAuth, token, userId, username) => {
     this.setState({ isAuth: isAuth, token: token, userId: userId, username });
   };
@@ -137,7 +140,13 @@ class App extends Component {
                 <Route
                   path="/auth-login"
                   exact
-                  render={() => <AuthLogin setAuth={this.setInnerAuth} />}
+                  render={() => (
+                    <AuthLogin
+                      setSocketUsers={this.setSocketUsers}
+                      setSocketData={this.setSocketData}
+                      setAuth={this.setInnerAuth}
+                    />
+                  )}
                 />
                 <Route
                   path="/auth-register"

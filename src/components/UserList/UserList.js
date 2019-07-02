@@ -55,6 +55,8 @@ const UserList = props => {
 
   let userList = [];
 
+  console.log(users);
+
   if (users) {
     for (let i = 0; i < users.users.length; i++) {
       userList.push(
