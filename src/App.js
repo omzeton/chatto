@@ -4,7 +4,7 @@ import openSocket from "socket.io-client";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Navbar from "./components/Navbar/Navbar";
-import Generator from "./components/Generator/Generator";
+import MainView from "./components/MainView/MainView";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
 import AuthLogin from "./components/AuthLogin/AuthLogin";
 import AuthRegister from "./components/AuthRegister/AuthRegister";
@@ -116,15 +116,15 @@ class App extends Component {
                     />
                   )}
                 />
-                <Route path="/generator" render={() => <Generator />} />
+                <Route path="/mainView" render={() => <MainView />} />
                 } />
                 <Route path="/404" render={() => <ErrorScreen />} />
                 <Route
                   path="/"
                   exact
-                  render={() => <Redirect to="/generator" />}
+                  render={() => <Redirect to="/mainView" />}
                 />
-                <Route render={() => <Redirect to="/generator" />} />
+                <Route render={() => <Redirect to="/mainView" />} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>
@@ -163,11 +163,13 @@ class App extends Component {
     );
     return (
       <div className="App">
-        <Navbar
-          settingsOn={this.settingsOn}
-          isAuth={this.state.isAuth}
-          setStateOnLogout={this.setStateOnLogout}
-        />
+        {this.state.isAuth ? null : (
+          <Navbar
+            settingsOn={this.settingsOn}
+            isAuth={this.state.isAuth}
+            setStateOnLogout={this.setStateOnLogout}
+          />
+        )}
         {this.state.isAuth ? (
           <Settings
             onLogout={this.logoutHandler}

@@ -1,56 +1,33 @@
 .UserList {
-  top:3em;
   position: relative;
-  width:100%;
-  height: calc(100% - 3em);
   background-color: var(--blu);
   display:grid;
   grid-template-columns: 1fr;
   grid-template-rows:5em 1fr;
-  overflow-y:scroll;
-  overflow-x:hidden;
-  z-index: 999;
 }
-.UserList .UserList--Header {
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid var(--blu2);
-  box-shadow:0 20px 100px 0 var(--blu3);
+
+.UserList__Search__Container {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
 }
-.UserList .UserList--Header h2 {
+
+.UserList__Search__Container input {
+  width: 250px;
+  height: 32px;
+  background: var(--blu4);
+  border: none;
+  border-radius: 5px;
   color:var(--w1);
-  font-family:var(--bold);
-  font-weight: 900;
 }
 
-.UserList::-webkit-scrollbar {
-  width: 0.7em;
-}
-
-.UserList::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px 10px transparent;
-  border: solid 3px transparent;
-}
-
-.UserList::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 10px 10px var(--w1);
-  border-radius: 0.5em;
-  border: solid 3px transparent;
-}
-
-.UserList::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 10px 10px var(--w2);
-}
-
-@media (min-width: 720px) {
-  .UserList {
-    display:grid;
-  }
-}
-
-@media (max-width: 720px) {
-  .UserList {
-    display:none;
-  }
+.UserList__Search__Container input { text-indent: 32px;}
+.UserList__Search__Container .Search__Icon { 
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fsearch.svg?alt=media&token=1cd1b452-9705-4d55-9de8-a5661ada9bc8");
+  background-position: center;
+  background-size: 2em;
+  background-repeat: no-repeat;
 }

@@ -1,0 +1,67 @@
+.OptionsList {
+  background-color: var(--blu3);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8em repeat(4, 3.5em) 1fr 3.8em;
+  grid-row-gap: 0.4em;
+}
+
+.OptionsList__Logo {
+  overflow: hidden;
+}
+
+.OptionsList__Logo img {
+  position: relative;
+  width: 5em;
+  height: auto;
+  top: 3.8em;
+  left: -0.8em;
+  transform: rotate(-90deg);
+}
+
+.OptionsList__Button {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.1em;
+  cursor: pointer;
+  transition:background-color .3s;
+}
+
+.OptionsList__Button--ConvList {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fmessages.svg?alt=media&token=1f9da476-0a01-4a22-b463-10e0a151f6a2");
+}
+
+.OptionsList__Button--Search {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fsearch.svg?alt=media&token=1cd1b452-9705-4d55-9de8-a5661ada9bc8");
+}
+
+.OptionsList__Button--User {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fuser.svg?alt=media&token=09d60b4c-e60e-439c-a7ca-d967a5d4feeb");
+}
+
+.OptionsList__Button--Settings {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fsettings.svg?alt=media&token=52f8c600-f055-45ea-8b2f-e559600edda0");
+}
+
+.OptionsList__Button--Logout {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Flogout.svg?alt=media&token=1f9a0ec4-4f67-4077-bbd1-dc33b40abaf4");
+}
+
+.OptionsList__Button:hover {
+    background-color: var(--blu4);
+}
+
+.active {
+  background-color: var(--blu4);
+}
+
+.active:after {
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:.2em;
+    background-color:var(--h);
+}
