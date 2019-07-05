@@ -13,7 +13,7 @@ const Usermini = props => {
       </div>
       <div className="Usermini__Right">
         <div className="Usermini__Right__Name">
-          <p>{props.name}</p>
+          <p>{props.username}</p>
         </div>
       </div>
     </div>

@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import openSocket from "socket.io-client";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Navbar from "./components/Navbar/Navbar";
-import Generator from "./components/Generator/Generator";
+import MainView from "./components/MainView/MainView";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
-import AuthLogin from "./components/AuthLogin/AuthLogin";
-import AuthRegister from "./components/AuthRegister/AuthRegister";
+import AuthLogin from "./components/Auth/AuthLogin/AuthLogin";
+import AuthRegister from "./components/Auth/AuthRegister/AuthRegister";
 import ErrorScreen from "./components/ErrorScreen/ErrorScreen";
-import Chatroom from "./components/Chatroom/Chatroom";
-import Settings from "./components/Settings/Settings";
 
 import "./App.css";
 
@@ -103,79 +100,100 @@ class App extends Component {
     let routes = this.state.isAuth ? (
       <Route
         render={({ location }) => (
-          <TransitionGroup className="CSST">
-            <CSSTransition key={location.key} timeout={400} classNames="fade">
-              <Switch location={location}>
-                <Route
-                  path="/chatroom/:id"
-                  render={() => (
-                    <Chatroom
-                      isAuth={this.state.isAuth}
-                      socketUsers={this.state.socketUsers}
-                      socketData={this.state.socketData}
-                    />
-                  )}
+          <Switch location={location}>
+            <Route
+              path="/mainView/messages/:id"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="messages"
+                  socketUsers={this.state.socketUsers}
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
                 />
-                <Route path="/generator" render={() => <Generator />} />
-                } />
-                <Route path="/404" render={() => <ErrorScreen />} />
-                <Route
-                  path="/"
-                  exact
-                  render={() => <Redirect to="/generator" />}
+              )}
+            />
+            <Route
+              path="/mainView/search"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="search"
+                  socketUsers={this.state.socketUsers}
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
                 />
-                <Route render={() => <Redirect to="/generator" />} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
+              )}
+            />
+            <Route
+              path="/mainView/user"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="user"
+                  socketUsers={this.state.socketUsers}
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
+                />
+              )}
+            />
+            <Route
+              path="/mainView/settings"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="settings"
+                  socketUsers={this.state.socketUsers}
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
+                />
+              )}
+            />
+            <Route path="/404" render={() => <ErrorScreen />} />
+            <Route
+              path="/"
+              exact
+              render={() => <Redirect to="/mainView/settings" />}
+            />
+          </Switch>
         )}
       />
     ) : (
       <Route
         render={({ location }) => (
-          <TransitionGroup className="CSST">
-            <CSSTransition key={location.key} timeout={400} classNames="fade">
-              <Switch location={location}>
-                <Route path="/" exact render={() => <HomeScreen />} />
-                <Route
-                  path="/auth-login"
-                  exact
-                  render={() => (
-                    <AuthLogin
-                      setSocketUsers={this.setSocketUsers}
-                      setSocketData={this.setSocketData}
-                      setAuth={this.setInnerAuth}
-                    />
-                  )}
+          <Switch location={location}>
+            <Route path="/" exact render={() => <HomeScreen />} />
+            <Route
+              path="/auth-login"
+              exact
+              render={() => (
+                <AuthLogin
+                  setSocketUsers={this.setSocketUsers}
+                  setSocketData={this.setSocketData}
+                  setAuth={this.setInnerAuth}
                 />
-                <Route
-                  path="/auth-register"
-                  exact
-                  render={() => <AuthRegister />}
-                />
-                <Route path="/404" exact render={() => <ErrorScreen />} />
-                <Route render={() => <Redirect to="/" />} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
+              )}
+            />
+            <Route
+              path="/auth-register"
+              exact
+              render={() => <AuthRegister />}
+            />
+            <Route path="/404" exact render={() => <ErrorScreen />} />
+            <Route render={() => <Redirect to="/" />} />
+          </Switch>
         )}
       />
     );
     return (
       <div className="App">
-        <Navbar
-          settingsOn={this.settingsOn}
-          isAuth={this.state.isAuth}
-          setStateOnLogout={this.setStateOnLogout}
-        />
-        {this.state.isAuth ? (
-          <Settings
-            onLogout={this.logoutHandler}
-            settingsOff={this.settingsOff}
-            toggleSettings={this.toggleSettings}
-            settingsOn={this.state.settings}
+        {this.state.isAuth ? null : (
+          <Navbar
+            settingsOn={this.settingsOn}
+            isAuth={this.state.isAuth}
+            setStateOnLogout={this.setStateOnLogout}
           />
-        ) : null}
+        )}
         <div className="App--Bottom">{routes}</div>
       </div>
     );

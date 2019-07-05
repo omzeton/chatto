@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Usermini from "./Usermini/Usermini";
 
 import "./UserList.css";
 
 const UserList = props => {
-  const [users, setUsers] = useState();
-
+  const [contacts, setContact] = useState([]);
   useEffect(() => {
-    setUsers({
-      users: props.socketUsers.users
-    });
-    console.log(props.socketUsers);
-    // eslint-disable-next-line
+    if (props.socketUsers) {
+      setContact(props.socketUsers.users);
+    }
   }, [props.socketUsers]);
-
   useEffect(() => {
-    console.log(props.convId);
+    const userData = JSON.parse(localStorage.getItem("userData"));
     const graphqlQuery = {
       query: `{
-        fetchConversation(conversationId: "${props.convId}") {
-          messages {
-            uId
-            body
-            date
-          }
-          users {
-            uId
+        fetchContactList(userId: "${userData.userId}") {
+          contacts {
             username
             avatar
+            _id
           }
         }
       }`
@@ -43,33 +34,28 @@ const UserList = props => {
         return res.json();
       })
       .then(resData => {
-        console.log(resData);
-        setUsers({
-          users: resData.data.fetchConversation.users
-        });
+        setContact(resData.data.fetchContactList.contacts);
       })
       .catch(err => {
         console.log(err);
       });
-    // eslint-disable-next-line
   }, []);
 
-  let userList = [];
+  const userList = [];
 
-  console.log(users);
-
-  if (users) {
-    for (let i = 0; i < users.users.length; i++) {
+  if (contacts) {
+    for (let c of contacts) {
       userList.push(
-        <Usermini avatar={users.users[i].avatar} key={users.users[i].uId} name={users.users[i].username} />
+        <Usermini key={c._id} avatar={c.avatar} username={c.username} />
       );
     }
   }
 
   return (
     <div className="UserList">
-      <div className="UserList--Header">
-        <h2>Online</h2>
+      <div className="UserList__Search__Container">
+        <span className="Search__Icon" />
+        <input placeholder="Search contacts" />
       </div>
       <div className="UserList--Main">{userList}</div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import Msg from "../Message/Message";
+import Msg from "./Message/Message";
 
 import "./ChatWindow.css";
 

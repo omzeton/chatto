@@ -1,56 +1,61 @@
 .UserList {
-  top:3em;
   position: relative;
-  width:100%;
-  height: calc(100% - 3em);
-  background-color: var(--blu);
+  /* background-color: var(--blu); */
+  background: linear-gradient(to bottom, #4e62f2 0%,#2f45a3 100%); 
   display:grid;
   grid-template-columns: 1fr;
-  grid-template-rows:5em 1fr;
-  overflow-y:scroll;
-  overflow-x:hidden;
-  z-index: 999;
+  grid-template-rows:5.5em 1fr;
 }
-.UserList .UserList--Header {
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid var(--blu2);
-  box-shadow:0 20px 100px 0 var(--blu3);
+
+.UserList__Search__Container {
+  position: relative;
 }
-.UserList .UserList--Header h2 {
+
+.UserList__Search__Container input {
+  width: 250px;
+  height: 32px;
+  top:2em;
+  position: relative;
+  left:50%;
+  transform:translateX(-50%);
+  background: var(--blu3);
+  border: none;
+  border-radius: 5px;
   color:var(--w1);
-  font-family:var(--bold);
-  font-weight: 900;
+  text-indent:40px;
+  outline: none;
+  transition:box-shadow .3s;
 }
 
-.UserList::-webkit-scrollbar {
-  width: 0.7em;
+.UserList__Search__Container:after {
+  content:'';
+  position: absolute;
+  top:100%;
+  left: 50%;
+  width:80%;
+  transform:translateX(-50%);
+  height:1px;
+  background-color:var(--blu3);
 }
 
-.UserList::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px 10px transparent;
-  border: solid 3px transparent;
+.UserList__Search__Container input::placeholder {
+  opacity: 0.5;
+  color:var(--w1);
 }
 
-.UserList::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 10px 10px var(--w1);
-  border-radius: 0.5em;
-  border: solid 3px transparent;
+.UserList__Search__Container input:focus {
+  box-shadow: 0 7px 20px -10px var(--w1);
 }
 
-.UserList::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 10px 10px var(--w2);
-}
-
-@media (min-width: 720px) {
-  .UserList {
-    display:grid;
-  }
-}
-
-@media (max-width: 720px) {
-  .UserList {
-    display:none;
-  }
+.UserList__Search__Container .Search__Icon { 
+  position: absolute;
+  width:30px;
+  z-index: 9;
+  height:30px;
+  top: 28px;
+  left: 25px;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fsearch.svg?alt=media&token=1cd1b452-9705-4d55-9de8-a5661ada9bc8");
+  background-position: center;
+  background-size: .9em;
+  background-repeat: no-repeat;
 }

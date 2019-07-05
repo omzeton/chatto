@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import openSocket from "socket.io-client";
 import { withRouter } from "react-router-dom";
-import Loader from "../Loader/Loader";
+import Loader from "../../Loader/Loader";
 
 import "./AuthLogin.css";
 
@@ -88,12 +88,10 @@ const AuthLogin = props => {
           socket.on("messages", data => {
             if (data.action === "create") {
               props.setSocketData(data.post);
-              // this.setState({ socketData: data.post });
               console.log(data);
             }
             if (data.action === "join") {
               props.setSocketUsers(data.post);
-              // this.setState({ socketUsers: data.post });
               console.log(data);
             }
           });
@@ -108,7 +106,7 @@ const AuthLogin = props => {
             resData.data.login.token,
             resData.data.login.userId
           );
-          props.history.push("/generator");
+          props.history.push("/mainView/messages/:id");
         }
       })
       .catch(err => {

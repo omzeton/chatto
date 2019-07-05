@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import Loader from "../Loader/Loader";
+import Loader from "../../Loader/Loader";
 
 import "./AuthRegister.css";
 

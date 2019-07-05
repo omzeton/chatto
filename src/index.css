@@ -3,9 +3,11 @@
   --w2: #ececec;
   --blu: #4e62f2;
   --blu2: #6272ff;
-  --blu3: #3946ad;
+  --blu3: #2f45a3;
+  --blu4: #4d62c2;
   --err: #f24e4e;
-  --succ: #11be28;
+  --online: #5cf55c;
+  --h: #f1ee37;
   --b: #333333;
   --g1: #809bad;
   --g2: #b5cfe7;
@@ -16,17 +18,23 @@
 }
 
 ::selection {
-  background-color:var(--b);
-  color:var(--w1);
+  background-color: var(--b);
+  color: var(--w1);
 }
 
 body {
   margin: 0;
+  width:100vw;
+  height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fbg__splash.png?alt=media&token=299997b4-f176-426f-8175-d9e06324af38");
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 code {

@@ -5,7 +5,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--w1);
 }
 
 .HomeScreen:before {
@@ -13,10 +12,6 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fbg__splash.png?alt=media&token=299997b4-f176-426f-8175-d9e06324af38");
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .HomeScreen__Container {

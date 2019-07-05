@@ -10,10 +10,7 @@ import "./Settings.css";
 const Settings = props => {
   const [view, setView] = useState("init");
 
-  let settingsStyle = props.settingsOn
-      ? { opacity: 1, zIndex: 9999 }
-      : { opacity: 0, zIndex: -2 },
-    settings = [];
+  let settings = [];
 
   switch (view) {
     case "init":
@@ -42,24 +39,19 @@ const Settings = props => {
       settings = <Password />;
       break;
     case "account":
-      settings = <Account onLogout={props.onLogout}/>;
+      settings = <Account onLogout={props.onLogout} />;
       break;
     default:
       break;
-  };
+  }
 
   return (
-    <div className="Settings" style={settingsStyle}>
+    <div className="Settings">
       <div className="Settings__Container">
         <div className="Settings__Container__Top">
           <h2>Settings</h2>
         </div>
         <div className="Settings__Container__Mid">{settings}</div>
-        <div className="Settings__Container__Btm">
-          <div className="Settings__Close" onClick={view === "init" ? props.settingsOff : () => setView("init")}>
-            <h2>{view === "init" ? "Close settings" : "Back"}</h2>
-          </div>
-        </div>
       </div>
     </div>
   );
