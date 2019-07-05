@@ -1,96 +1,94 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./SearchArea.css";
 
 const SearchArea = props => {
-  let users = "No users found!";
+  const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const graphQLQuery = {
+      query: `
+      {
+        fetchAllUsers(userId: "${userData.userId}") {
+          users {
+            _id
+            username
+            avatar
+          }
+        }
+      }`
+    };
+    fetch("http://localhost:8080/graphql", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(graphQLQuery)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(resData => {
+        setUsers(resData.data.fetchAllUsers.users);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  let userQuery = [];
+
+  for (let u of users) {
+    if (searchQuery !== "") {
+      if (u.username.split(searchQuery)[0] === "" && userData.userId !== u._id) {
+        userQuery.push(
+          <div className="Usercard" key={u._id}>
+            <div className="Usercard__Left">
+              <div
+                className="Usercard__Left__Avatar"
+                style={{
+                  backgroundImage: `url(http://localhost:8080/${u.avatar})`
+                }}
+              />
+            </div>
+            <div className="Usercard__Right">
+              <p>{u.username}</p>
+            </div>
+          </div>
+        );
+      }
+    } else {
+      if (userData.userId !== u._id) {
+        userQuery.push(
+          <div className="Usercard" key={u._id}>
+            <div className="Usercard__Left">
+              <div
+                className="Usercard__Left__Avatar"
+                style={{
+                  backgroundImage: `url(http://localhost:8080/${u.avatar})`
+                }}
+              />
+            </div>
+            <div className="Usercard__Right">
+              <p>{u.username}</p>
+            </div>
+          </div>
+        );
+      }
+    }
+  }
   return (
     <div className="SearchArea">
       <div className="Searchbar__Container">
-        <input type="text" placeholder="Search for users" />
+        <input
+          type="text"
+          placeholder="Search for users"
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+        />
       </div>
-      <div className="SearchArea__User__Container">
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-
-        <div className="Usercard">
-          <div className="Usercard__Left">
-            <div className="Usercard__Left__Avatar" style={{
-              backgroundImage: `url(http://localhost:8080/images/e07c3187-00e0-44bd-8e47-8b2775209248)`
-            }}></div>
-          </div>
-          <div className="Usercard__Right"><p>Kristina Mckellar</p></div>
-        </div>
-      </div>
+      <div className="SearchArea__User__Container">{userQuery}</div>
     </div>
   );
 };

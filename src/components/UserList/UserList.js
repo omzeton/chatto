@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-
-import Usermini from "./Usermini/Usermini";
+import React from "react";
 
 import "./UserList.css";
 
