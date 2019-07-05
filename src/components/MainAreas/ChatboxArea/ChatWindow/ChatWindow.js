@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import Msg from "../Message/Message";
+import Msg from "./Message/Message";
 
 import "./ChatWindow.css";
 
@@ -19,11 +19,11 @@ const ChatWindow = props => {
       for (let i = 0; i < con.messages.length; i++) {
         let innerMessages = [],
           label = con.messages[i].uId === userData.userId ? "self" : "other",
-          bgImg = `https://chatto--api.herokuapp.com/${con.messages[i].avatar}`,
+          bgImg = `http://localhost:8080/${con.messages[i].avatar}`,
           attachment =
             con.messages[i].attachment === "null"
               ? false
-              : `https://chatto--api.herokuapp.com/${con.messages[i].attachment}`,
+              : `http://localhost:8080/${con.messages[i].attachment}`,
           msgStream = (
             <div className={label} key={i + 20}>
               {innerMessages}

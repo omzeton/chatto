@@ -8,7 +8,7 @@ const Usermini = props => {
       <div className="Usermini__Left">
         <div
           className="Usermini__Left__Photo"
-          style={{ backgroundImage: `url(https://chatto--api.herokuapp.com/${props.avatar})` }}
+          style={{ backgroundImage: `url(http://localhost:8080/${props.avatar})` }}
         />
       </div>
       <div className="Usermini__Right">

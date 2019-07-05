@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import openSocket from "socket.io-client";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Navbar from "./components/Navbar/Navbar";
 import MainView from "./components/MainView/MainView";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
-import AuthLogin from "./components/AuthLogin/AuthLogin";
-import AuthRegister from "./components/AuthRegister/AuthRegister";
+import AuthLogin from "./components/Auth/AuthLogin/AuthLogin";
+import AuthRegister from "./components/Auth/AuthRegister/AuthRegister";
 import ErrorScreen from "./components/ErrorScreen/ErrorScreen";
-import Chatroom from "./components/Chatroom/Chatroom";
-import Settings from "./components/Settings/Settings";
 
 import "./App.css";
 
@@ -36,7 +33,7 @@ class App extends Component {
     }
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
-    const socket = openSocket("https://chatto--api.herokuapp.com");
+    const socket = openSocket("http://localhost:8080");
     this.setState({
       isAuth: true,
       token: userData.token,
@@ -103,61 +100,85 @@ class App extends Component {
     let routes = this.state.isAuth ? (
       <Route
         render={({ location }) => (
-          <TransitionGroup className="CSST">
-            <CSSTransition key={location.key} timeout={400} classNames="fade">
-              <Switch location={location}>
-                <Route
-                  path="/chatroom/:id"
-                  render={() => (
-                    <Chatroom
-                      isAuth={this.state.isAuth}
-                      socketUsers={this.state.socketUsers}
-                      socketData={this.state.socketData}
-                    />
-                  )}
+          <Switch location={location}>
+            <Route
+              path="/mainView/messages"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="messages"
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
                 />
-                <Route path="/mainView" render={() => <MainView />} />
-                } />
-                <Route path="/404" render={() => <ErrorScreen />} />
-                <Route
-                  path="/"
-                  exact
-                  render={() => <Redirect to="/mainView" />}
+              )}
+            />
+            <Route
+              path="/mainView/search"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="search"
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
                 />
-                <Route render={() => <Redirect to="/mainView" />} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
+              )}
+            />
+            <Route
+              path="/mainView/user"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="user"
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
+                />
+              )}
+            />
+            <Route
+              path="/mainView/settings"
+              render={() => (
+                <MainView
+                  onLogout={this.logoutHandler}
+                  currentRoute="settings"
+                  isAuth={this.state.isAuth}
+                  socketData={this.state.socketData}
+                />
+              )}
+            />
+            <Route path="/404" render={() => <ErrorScreen />} />
+            <Route
+              path="/"
+              exact
+              render={() => <Redirect to="/mainView/messages" />}
+            />
+            <Route render={() => <Redirect to="/mainView/messages" />} />
+          </Switch>
         )}
       />
     ) : (
       <Route
         render={({ location }) => (
-          <TransitionGroup className="CSST">
-            <CSSTransition key={location.key} timeout={400} classNames="fade">
-              <Switch location={location}>
-                <Route path="/" exact render={() => <HomeScreen />} />
-                <Route
-                  path="/auth-login"
-                  exact
-                  render={() => (
-                    <AuthLogin
-                      setSocketUsers={this.setSocketUsers}
-                      setSocketData={this.setSocketData}
-                      setAuth={this.setInnerAuth}
-                    />
-                  )}
+          <Switch location={location}>
+            <Route path="/" exact render={() => <HomeScreen />} />
+            <Route
+              path="/auth-login"
+              exact
+              render={() => (
+                <AuthLogin
+                  setSocketUsers={this.setSocketUsers}
+                  setSocketData={this.setSocketData}
+                  setAuth={this.setInnerAuth}
                 />
-                <Route
-                  path="/auth-register"
-                  exact
-                  render={() => <AuthRegister />}
-                />
-                <Route path="/404" exact render={() => <ErrorScreen />} />
-                <Route render={() => <Redirect to="/" />} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
+              )}
+            />
+            <Route
+              path="/auth-register"
+              exact
+              render={() => <AuthRegister />}
+            />
+            <Route path="/404" exact render={() => <ErrorScreen />} />
+            <Route render={() => <Redirect to="/" />} />
+          </Switch>
         )}
       />
     );
@@ -170,14 +191,6 @@ class App extends Component {
             setStateOnLogout={this.setStateOnLogout}
           />
         )}
-        {this.state.isAuth ? (
-          <Settings
-            onLogout={this.logoutHandler}
-            settingsOff={this.settingsOff}
-            toggleSettings={this.toggleSettings}
-            settingsOn={this.state.settings}
-          />
-        ) : null}
         <div className="App--Bottom">{routes}</div>
       </div>
     );

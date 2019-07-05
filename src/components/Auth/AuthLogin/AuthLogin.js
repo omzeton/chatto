@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import openSocket from "socket.io-client";
 import { withRouter } from "react-router-dom";
-import Loader from "../Loader/Loader";
+import Loader from "../../Loader/Loader";
 
 import "./AuthLogin.css";
 
@@ -61,7 +61,7 @@ const AuthLogin = props => {
         }
       }`
     };
-    fetch("https://chatto--api.herokuapp.com/graphql", {
+    fetch("http://localhost:8080/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphqlQuery)
@@ -80,18 +80,16 @@ const AuthLogin = props => {
             token: resData.data.login.token,
             username: resData.data.login.username,
             userId: resData.data.login.userId,
-            avatar: `https://chatto--api.herokuapp.com/${resData.data.login.avatar}`
+            avatar: `http://localhost:8080/${resData.data.login.avatar}`
           };
-          const socket = openSocket("https://chatto--api.herokuapp.com");
+          const socket = openSocket("http://localhost:8080");
           socket.on("messages", data => {
             if (data.action === "create") {
               props.setSocketData(data.post);
-              // this.setState({ socketData: data.post });
               console.log(data);
             }
             if (data.action === "join") {
               props.setSocketUsers(data.post);
-              // this.setState({ socketUsers: data.post });
               console.log(data);
             }
           });
@@ -106,7 +104,7 @@ const AuthLogin = props => {
             resData.data.login.token,
             resData.data.login.userId
           );
-          props.history.push("/generator");
+          props.history.push("/mainView/messages");
         }
       })
       .catch(err => {

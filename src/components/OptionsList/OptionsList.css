@@ -36,16 +36,38 @@
   background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fsearch.svg?alt=media&token=1cd1b452-9705-4d55-9de8-a5661ada9bc8");
 }
 
-.OptionsList__Button--User {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fuser.svg?alt=media&token=09d60b4c-e60e-439c-a7ca-d967a5d4feeb");
-}
-
 .OptionsList__Button--Settings {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Fsettings.svg?alt=media&token=52f8c600-f055-45ea-8b2f-e559600edda0");
 }
 
 .OptionsList__Button--Logout {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/notnik-app.appspot.com/o/chatto-assets%2Flogout.svg?alt=media&token=1f9a0ec4-4f67-4077-bbd1-dc33b40abaf4");
+}
+
+.User__Avatar--Small {
+  position: relative;
+  left:50%;
+  top:50%;
+  transform:translateX(-50%) translateY(-50%);
+  border-radius: 50%;
+  width:60%;
+  height:60%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 10px -4px var(--w1);
+}
+
+.User__Avatar--Small:after {
+  content:'';
+  position: absolute;
+  width:5px;
+  border-radius: 50%;
+  height:5px;
+  background-color:var(--online);
+  top:-5px;
+  right:-2px;
+  box-shadow: 0 0 4px 0px var(--online);
 }
 
 .OptionsList__Button:hover {

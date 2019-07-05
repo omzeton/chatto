@@ -7,6 +7,7 @@
   grid-template-columns: 3.5em 1fr;
   border-top: 1px solid var(--g2);
   box-sizing: border-box;
+  background-color:var(--w1);
 }
 
 .ChatInput .ChatInput__Form {

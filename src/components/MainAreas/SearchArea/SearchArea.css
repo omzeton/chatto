@@ -1,0 +1,115 @@
+.SearchArea {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10em 1fr;
+}
+
+.Searchbar__Container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Searchbar__Container:after {
+  content:'';
+  position: absolute;
+  width:50%;
+  top:100%;
+  height: 1px;
+  background-color:var(--blu);
+}
+
+.Searchbar__Container input {
+  width: 75%;
+  height: 2.5em;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  border: 1px solid transparent;
+  font-family: var(--light);
+  line-height: 0;
+  font-size: 1.2rem;
+  outline: none;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.Searchbar__Container input:focus {
+  border-color: var(--blu);
+  box-shadow: 0 7px 20px -10px var(--blu);
+}
+
+.SearchArea__User__Container {
+  height:calc(100vh - 10em);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.Usercard {
+  position: relative;
+  width:40vmin;
+  height:6em;
+  border-radius: 5px;
+  background-color:var(--w1);
+  margin:1em 0;
+  display:grid;
+  grid-template-rows:1fr;
+  grid-template-columns:6em 1fr;
+  border:1px solid var(--blu);
+}
+
+.Usercard:after {
+  content:'';
+  position: absolute;
+  background-color:#000;
+  opacity: 1;
+  top:calc(100% + 1em);
+  width:10em;
+  height: 1px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.Usercard__Left {
+  position: relative;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Usercard__Left:after {
+  content:'';
+  position: absolute;
+  background-color:var(--blu);
+  height:3.4em;
+  width:1px;
+  left:100%;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.Usercard__Left__Avatar {
+  width:80%;
+  height:80%;
+  border-radius: 50%;
+}
+
+.Usercard__Right {
+  position: relative;
+  display:flex;
+  align-items: center;
+  padding-left: 1em;
+  overflow: hidden;
+}
+
+.Usercard__Right p {
+  font-family:var(--bold);
+  font-weight: 700;
+  line-height: 0;
+  letter-spacing: -1.3px;
+  white-space: nowrap;
+  font-size: 1.3rem;
+}

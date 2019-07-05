@@ -26,7 +26,7 @@ const Avatar = props => {
     if (avatarData) {
       const formData = new FormData();
       formData.append("image", avatarData);
-      fetch("https://chatto--api.herokuapp.com/post-image", {
+      fetch("http://localhost:8080/post-image", {
         method: "PUT",
         body: formData
       })
@@ -40,7 +40,7 @@ const Avatar = props => {
           const userData = JSON.parse(localStorage.getItem("userData"));
           const updatedData = {
             ...userData,
-            avatar: `https://chatto--api.herokuapp.com/${imageUrl}`
+            avatar: `http://localhost:8080/${imageUrl}`
           };
           localStorage.removeItem("userData");
           localStorage.setItem("userData", JSON.stringify(updatedData));
@@ -55,7 +55,7 @@ const Avatar = props => {
                   }
                 `
           };
-          return fetch("https://chatto--api.herokuapp.com/graphql", {
+          return fetch("http://localhost:8080/graphql", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(graphqlQuery)

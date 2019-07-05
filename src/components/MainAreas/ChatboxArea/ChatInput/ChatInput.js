@@ -20,7 +20,7 @@ const ChatInput = props => {
     if (attachment) {
       const formData = new FormData();
       formData.append("image", attachment);
-      fetch("https://chatto--api.herokuapp.com/post-image", {
+      fetch("http://localhost:8080/post-image", {
         method: "PUT",
         body: formData
       })
@@ -34,7 +34,7 @@ const ChatInput = props => {
           createMessage(messageInput:{conversationId: "${
             props.convId
           }", userId: "${userData.userId}", body: """${msg.body}""", avatar: "${
-              userData.avatar.split("https://chatto--api.herokuapp.com/")[1]
+              userData.avatar.split("http://localhost:8080/")[1]
             }", attachment: "${imageUrl}"}) {
             messages {
               uId
@@ -46,7 +46,7 @@ const ChatInput = props => {
           }
         }`
           };
-          return fetch("https://chatto--api.herokuapp.com/graphql", {
+          return fetch("http://localhost:8080/graphql", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(graphqlQuery)
@@ -71,7 +71,7 @@ const ChatInput = props => {
         createMessage(messageInput:{conversationId: "${
           props.convId
         }", userId: "${userData.userId}", body: """${msg.body}""", avatar: "${
-          userData.avatar.split("https://chatto--api.herokuapp.com/")[1]
+          userData.avatar.split("http://localhost:8080/")[1]
         }", attachment: "null"}) {
           messages {
             uId
@@ -83,7 +83,7 @@ const ChatInput = props => {
         }
       }`
       };
-      fetch("https://chatto--api.herokuapp.com/graphql", {
+      fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(graphqlQuery)

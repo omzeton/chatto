@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import Loader from "../Loader/Loader";
+import Loader from "../../Loader/Loader";
 
 import "./AuthRegister.css";
 
@@ -68,7 +68,7 @@ const AuthRegister = props => {
       }
       `
     };
-    fetch("https://chatto--api.herokuapp.com/graphql", {
+    fetch("http://localhost:8080/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphqlQuery)

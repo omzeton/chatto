@@ -1,8 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import "./OptionsList.css";
 
 const OptionsList = props => {
+  const userData = JSON.parse(localStorage.getItem('userData'));
   return (
     <div className="OptionsList">
       <div className="OptionsList__Logo">
@@ -11,12 +13,24 @@ const OptionsList = props => {
           alt="Chatto"
         />
       </div>
-      <div className="OptionsList__Button OptionsList__Button--ConvList active" onClick={() => props.onChangeView("messages")}/>
-      <div className="OptionsList__Button OptionsList__Button--Search" onClick={() => props.onChangeView("search")}/>
-      <div className="OptionsList__Button OptionsList__Button--User"  onClick={() => props.onChangeView("user")}/>
-      <div className="OptionsList__Button OptionsList__Button--Settings"  onClick={() => props.onChangeView("settings")}/>
+      <NavLink
+        activeClassName="active"
+        className="OptionsList__Button OptionsList__Button--ConvList"
+        to="/mainView/messages"
+      />
+      <NavLink
+        activeClassName="active"
+        className="OptionsList__Button OptionsList__Button--Search"
+        to="/mainView/search"
+      />
+      <NavLink
+        activeClassName="active"
+        className="OptionsList__Button OptionsList__Button--Settings"
+        to="/mainView/settings"
+      />
+      <div className="User__Avatar--Small" style={{backgroundImage: `url(${userData.avatar})`}}></div>
       <div />
-      <div className="OptionsList__Button OptionsList__Button--Logout" />
+      <div className="OptionsList__Button OptionsList__Button--Logout" onClick={() => props.onLogout()}/>
     </div>
   );
 };

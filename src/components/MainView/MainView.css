@@ -5,5 +5,4 @@
   display:grid;
   grid-template-rows: 1fr;
   grid-template-columns:3.5em 18em 1fr;
-  overflow: hidden;
 }
