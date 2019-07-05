@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from 'react-router-dom';
 
 import "./ChatInput.css";
 
@@ -31,9 +32,7 @@ const ChatInput = props => {
           graphqlQuery = {
             query: `
         mutation {
-          createMessage(messageInput:{conversationId: "${
-            props.convId
-          }", userId: "${userData.userId}", body: """${msg.body}""", avatar: "${
+          createMessage(messageInput:{ownId: "${userData.userId}", otherId: "${props.match.params.id}", body: """${msg.body}""", avatar: "${
               userData.avatar.split("http://localhost:8080/")[1]
             }", attachment: "${imageUrl}"}) {
             messages {
@@ -68,9 +67,7 @@ const ChatInput = props => {
       graphqlQuery = {
         query: `
       mutation {
-        createMessage(messageInput:{conversationId: "${
-          props.convId
-        }", userId: "${userData.userId}", body: """${msg.body}""", avatar: "${
+        createMessage(messageInput:{ownId: "${userData.userId}", otherId: "${props.match.params.id}", body: """${msg.body}""", avatar: "${
           userData.avatar.split("http://localhost:8080/")[1]
         }", attachment: "null"}) {
           messages {
@@ -148,4 +145,4 @@ const ChatInput = props => {
   );
 };
 
-export default ChatInput;
+export default withRouter(ChatInput);

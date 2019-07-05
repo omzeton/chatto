@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { withRouter } from 'react-router-dom';
 
 import "./SearchArea.css";
 
@@ -39,11 +40,13 @@ const SearchArea = props => {
   const userData = JSON.parse(localStorage.getItem("userData"));
   let userQuery = [];
 
+  const connect = link => props.history.push(`messages/${link}`);
+
   for (let u of users) {
     if (searchQuery !== "") {
       if (u.username.split(searchQuery)[0] === "" && userData.userId !== u._id) {
         userQuery.push(
-          <div className="Usercard" key={u._id}>
+          <div className="Usercard" key={u._id} onClick={() => connect(u._id)}>
             <div className="Usercard__Left">
               <div
                 className="Usercard__Left__Avatar"
@@ -61,7 +64,7 @@ const SearchArea = props => {
     } else {
       if (userData.userId !== u._id) {
         userQuery.push(
-          <div className="Usercard" key={u._id}>
+          <div className="Usercard" key={u._id} onClick={() => connect(u._id)}>
             <div className="Usercard__Left">
               <div
                 className="Usercard__Left__Avatar"
@@ -93,4 +96,4 @@ const SearchArea = props => {
   );
 };
 
-export default SearchArea;
+export default withRouter(SearchArea);

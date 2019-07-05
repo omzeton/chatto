@@ -16,7 +16,7 @@ const OptionsList = props => {
       <NavLink
         activeClassName="active"
         className="OptionsList__Button OptionsList__Button--ConvList"
-        to="/mainView/messages"
+        to="/mainView/messages/:id"
       />
       <NavLink
         activeClassName="active"

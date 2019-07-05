@@ -104,7 +104,7 @@ const AuthLogin = props => {
             resData.data.login.token,
             resData.data.login.userId
           );
-          props.history.push("/mainView/messages");
+          props.history.push("/mainView/messages/:id");
         }
       })
       .catch(err => {

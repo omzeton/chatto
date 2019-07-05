@@ -51,15 +51,22 @@
 
 .Usercard {
   position: relative;
-  width:40vmin;
+  width:22em;
   height:6em;
   border-radius: 5px;
-  background-color:var(--w1);
+  background-color:var(--blu);
   margin:.6em 0;
   display:grid;
   grid-template-rows:1fr;
   grid-template-columns:6em 1fr;
-  border:1px solid var(--blu);
+  border:1px solid var(--w1);
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.Usercard:hover {
+  border-color: var(--blu);
+  box-shadow: 0 0 20px -10px var(--blu3);
 }
 
 .Usercard__Left {
@@ -100,5 +107,6 @@
   line-height: 0;
   letter-spacing: -1.3px;
   white-space: nowrap;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  color:var(--w1);
 }

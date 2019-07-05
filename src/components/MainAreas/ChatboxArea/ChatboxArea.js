@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from 'react-router-dom';
 
 import ChatWindow from "./ChatWindow/ChatWindow";
 import ChatInput from "./ChatInput/ChatInput";
@@ -17,9 +18,11 @@ const ChatboxArea = props => {
   }, [props.socketData]);
 
   const loadMessages = e => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const firstContact = props.match.params.id === ":id" ? true : false; 
     const graphqlQuery = {
       query: `{
-        fetchConversation(conversationId: "${props.convId}") {
+        connectToStream(otherId: "${props.match.params.id}", ownId: "${userData.userId}", useFirstContact: ${firstContact}) {
           messages {
             uId
             body
@@ -28,8 +31,9 @@ const ChatboxArea = props => {
             attachment
           }
           users {
-            uId
+            _id
             username
+            avatar
           }
         }
       }`
@@ -44,8 +48,8 @@ const ChatboxArea = props => {
       })
       .then(resData => {
         setConversation({
-          messages: resData.data.fetchConversation.messages,
-          users: resData.data.fetchConversation.users
+          messages: resData.data.connectToStream.messages,
+          users: resData.data.connectToStream.users
         });
       })
       .catch(err => {
@@ -64,4 +68,4 @@ const ChatboxArea = props => {
   );
 };
 
-export default ChatboxArea;
+export default withRouter(ChatboxArea);

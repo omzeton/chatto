@@ -102,11 +102,12 @@ class App extends Component {
         render={({ location }) => (
           <Switch location={location}>
             <Route
-              path="/mainView/messages"
+              path="/mainView/messages/:id"
               render={() => (
                 <MainView
                   onLogout={this.logoutHandler}
                   currentRoute="messages"
+                  socketUsers={this.state.socketUsers}
                   isAuth={this.state.isAuth}
                   socketData={this.state.socketData}
                 />
@@ -118,6 +119,7 @@ class App extends Component {
                 <MainView
                   onLogout={this.logoutHandler}
                   currentRoute="search"
+                  socketUsers={this.state.socketUsers}
                   isAuth={this.state.isAuth}
                   socketData={this.state.socketData}
                 />
@@ -129,6 +131,7 @@ class App extends Component {
                 <MainView
                   onLogout={this.logoutHandler}
                   currentRoute="user"
+                  socketUsers={this.state.socketUsers}
                   isAuth={this.state.isAuth}
                   socketData={this.state.socketData}
                 />
@@ -140,6 +143,7 @@ class App extends Component {
                 <MainView
                   onLogout={this.logoutHandler}
                   currentRoute="settings"
+                  socketUsers={this.state.socketUsers}
                   isAuth={this.state.isAuth}
                   socketData={this.state.socketData}
                 />
@@ -149,9 +153,8 @@ class App extends Component {
             <Route
               path="/"
               exact
-              render={() => <Redirect to="/mainView/messages" />}
+              render={() => <Redirect to="/mainView/settings" />}
             />
-            <Route render={() => <Redirect to="/mainView/messages" />} />
           </Switch>
         )}
       />

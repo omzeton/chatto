@@ -27,7 +27,7 @@ const MainView = props => {
   return (
     <div className="MainView">
       <OptionsList onLogout={props.onLogout} />
-      <UserList />
+      <UserList socketUsers={props.socketUsers}/>
       {mainComponent}
     </div>
   );
