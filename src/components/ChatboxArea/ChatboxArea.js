@@ -34,7 +34,7 @@ const ChatboxArea = props => {
         }
       }`
     };
-    fetch("https://chatto--api.herokuapp.com/graphql", {
+    fetch("http://localhost:8080/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphqlQuery)

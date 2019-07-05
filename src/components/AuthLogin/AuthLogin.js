@@ -61,9 +61,11 @@ const AuthLogin = props => {
         }
       }`
     };
-    fetch("https://chatto--api.herokuapp.com/graphql", {
+    fetch("http://localhost:8080/graphql", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      mode: 'cors',
+      credentials: 'same-origin',
+      headers: { "Content-Type": "application/json", "Access-Control-Origin": "*" },
       body: JSON.stringify(graphqlQuery)
     })
       .then(res => {
@@ -80,9 +82,9 @@ const AuthLogin = props => {
             token: resData.data.login.token,
             username: resData.data.login.username,
             userId: resData.data.login.userId,
-            avatar: `https://chatto--api.herokuapp.com/${resData.data.login.avatar}`
+            avatar: `http://localhost:8080/${resData.data.login.avatar}`
           };
-          const socket = openSocket("https://chatto--api.herokuapp.com");
+          const socket = openSocket("http://localhost:8080");
           socket.on("messages", data => {
             if (data.action === "create") {
               props.setSocketData(data.post);
