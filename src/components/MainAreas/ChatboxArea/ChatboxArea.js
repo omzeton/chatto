@@ -22,6 +22,7 @@ const ChatboxArea = props => {
   }, [props.socketData]);
 
   const loadMessages = e => {
+    console.log("test");
     const userData = JSON.parse(localStorage.getItem("userData"));
     const graphqlQuery = {
       query: `{
