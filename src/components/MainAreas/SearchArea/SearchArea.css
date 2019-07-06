@@ -91,6 +91,9 @@
   width:80%;
   height:80%;
   border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .Usercard__Right {

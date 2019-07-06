@@ -153,7 +153,7 @@ class App extends Component {
             <Route
               path="/"
               exact
-              render={() => <Redirect to="/mainView/settings" />}
+              render={() => <Redirect to="/mainView/messages/:id" />}
             />
           </Switch>
         )}

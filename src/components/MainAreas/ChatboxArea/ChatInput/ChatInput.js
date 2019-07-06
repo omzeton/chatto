@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 import "./ChatInput.css";
 
@@ -18,86 +18,94 @@ const ChatInput = props => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     let graphqlQuery;
     console.log(msg.body);
-    if (attachment) {
-      const formData = new FormData();
-      formData.append("image", attachment);
-      fetch("http://localhost:8080/post-image", {
-        method: "PUT",
-        body: formData
-      })
-        .then(res => res.json())
-        .then(fileResData => {
-          const imageUrl = fileResData.filePath;
-          console.log(imageUrl);
-          graphqlQuery = {
-            query: `
-        mutation {
-          createMessage(messageInput:{ownId: "${userData.userId}", otherId: "${props.match.params.id}", body: """${msg.body}""", avatar: "${
-              userData.avatar.split("http://localhost:8080/")[1]
-            }", attachment: "${imageUrl}"}) {
-            messages {
-              uId
-              body
-              date
-              avatar
-              attachment
-            }
-          }
-        }`
-          };
-          return fetch("http://localhost:8080/graphql", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(graphqlQuery)
-          })
-            .then(res => {
-              setPreviewImage(undefined);
-              setAttachment(undefined);
-              setMsg({body: ""});
-              return res.json();
-            })
-            .then(resData => {
-              console.log(resData);
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        });
+    if (msg.body === "" && !attachment) {
+      console.log("Nothing to send");
     } else {
-      graphqlQuery = {
-        query: `
-      mutation {
-        createMessage(messageInput:{ownId: "${userData.userId}", otherId: "${props.match.params.id}", body: """${msg.body}""", avatar: "${
-          userData.avatar.split("http://localhost:8080/")[1]
-        }", attachment: "null"}) {
-          messages {
-            uId
-            body
-            date
-            avatar
-            attachment
-          }
-        }
-      }`
-      };
-      fetch("http://localhost:8080/graphql", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(graphqlQuery)
-      })
-        .then(res => {
-          return res.json();
+      if (attachment) {
+        const formData = new FormData();
+        formData.append("image", attachment);
+        fetch("http://localhost:8080/post-image", {
+          method: "PUT",
+          body: formData
         })
-        .then(resData => {
-          props.loadNewMsg(resData.data.createMessage.messages);
-          setPreviewImage(undefined);
-          setAttachment(undefined);
-          setMsg({body: ""});
-          console.log(resData);
+          .then(res => res.json())
+          .then(fileResData => {
+            const imageUrl = fileResData.filePath;
+            console.log(imageUrl);
+            graphqlQuery = {
+              query: `
+              mutation {
+                createMessage(messageInput:{ownId: "${
+                  userData.userId
+                }", otherId: "${props.match.params.id}", body: """${
+                msg.body
+              }""", attachment: "${imageUrl}"}) {
+                  messages {
+                    uId
+                    body
+                    date
+                    avatar
+                    attachment
+                  }
+                }
+              }`
+            };
+            return fetch("http://localhost:8080/graphql", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(graphqlQuery)
+            })
+              .then(res => {
+                setPreviewImage(undefined);
+                setAttachment(undefined);
+                setMsg({ body: "" });
+                return res.json();
+              })
+              .then(resData => {
+                console.log(resData);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          });
+      } else {
+        graphqlQuery = {
+          query: `
+          mutation {
+            createMessage(messageInput:{ownId: "${
+              userData.userId
+            }", otherId: "${props.match.params.id}", body: """${
+            msg.body
+          }""", attachment: "null"}) {
+              messages {
+                uId
+                body
+                date
+                avatar
+                attachment
+              }
+            }
+          }`
+        };
+        fetch("http://localhost:8080/graphql", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(graphqlQuery)
         })
-        .catch(err => {
-          console.log(err);
-        });
+          .then(res => {
+            return res.json();
+          })
+          .then(resData => {
+            props.loadNewMsg(resData.data.createMessage.messages);
+            setPreviewImage(undefined);
+            setAttachment(undefined);
+            setMsg({ body: "" });
+            console.log(resData);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     }
   };
 

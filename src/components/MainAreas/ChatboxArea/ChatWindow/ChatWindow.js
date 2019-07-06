@@ -31,7 +31,7 @@ const ChatWindow = props => {
           ),
           prevMsgId =
             i - 1 === -1 ? con.messages[0].uId : con.messages[i - 1].uId;
-  
+
         innerMessages.push(
           <Msg
             attachment={attachment}
@@ -76,7 +76,7 @@ const ChatWindow = props => {
 
   return (
     <div className="ChatWindow">
-      <div className="Chat__Container">{feed}</div>
+      <div className="Chat__Container" ref={ref => props.setRef(ref)}>{feed}</div>
     </div>
   );
 };
