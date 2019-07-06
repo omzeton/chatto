@@ -41,12 +41,15 @@ const UserList = props => {
   }, []);
 
   const userList = [];
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   if (contacts) {
     for (let c of contacts) {
-      userList.push(
-        <Usermini key={c._id} avatar={c.avatar} username={c.username} />
-      );
+      if (c.uId !== userData.userId) {
+        userList.push(
+          <Usermini url={c.uId} key={c._id} avatar={c.avatar} username={c.username} />
+        );
+      }
     }
   }
 

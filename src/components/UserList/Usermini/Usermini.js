@@ -1,10 +1,14 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 
 import "./Usermini.css";
 
 const Usermini = props => {
+  const connectToUser = url => {
+    props.history.push(`/mainView/messages/${url}`);
+  }
   return (
-    <div className="Usermini">
+    <div className="Usermini" onClick={() => connectToUser(props.url)}>
       <div className="Usermini__Left">
         <div
           className="Usermini__Left__Photo"
@@ -20,4 +24,4 @@ const Usermini = props => {
   );
 };
 
-export default Usermini;
+export default withRouter(Usermini);

@@ -8,21 +8,24 @@ import "./ChatboxArea.css";
 
 const ChatboxArea = props => {
   const [conversation, setConversation] = useState({ messages: [], users: [] });
+  const [chatboxWindow, setChatboxWindow] = useState();
 
   useEffect(() => {
     setConversation({
       messages: props.socketData.messages,
       users: [...conversation.users]
     });
+    if (chatboxWindow) {
+      scrollToBottom();
+    }
     // eslint-disable-next-line
   }, [props.socketData]);
 
   const loadMessages = e => {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const firstContact = props.match.params.id === ":id" ? true : false; 
     const graphqlQuery = {
       query: `{
-        connectToStream(otherId: "${props.match.params.id}", ownId: "${userData.userId}", useFirstContact: ${firstContact}) {
+        connectToStream(otherId: "${props.match.params.id}", ownId: "${userData.userId}") {
           messages {
             uId
             body
@@ -60,9 +63,12 @@ const ChatboxArea = props => {
   const loadNewMsg = newData => {
     setConversation({ messages: newData, users: [...conversation.users] });
   };
+
+  const scrollToBottom = () => chatboxWindow.scrollTo(0, chatboxWindow.scrollHeight);
+
   return (
     <div className="ChatboxArea">
-      <ChatWindow isAuth={props.isAuth} loadMessages={loadMessages} conv={conversation} />
+      <ChatWindow setRef={setChatboxWindow} isAuth={props.isAuth} loadMessages={loadMessages} conv={conversation} />
       <ChatInput loadNewMsg={loadNewMsg} />
     </div>
   );
