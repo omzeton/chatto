@@ -16,11 +16,7 @@ const Message = props => {
     <>
       <div
         className={colors}
-        style={
-          props.method === "pin"
-            ? { backgroundImage: `url(${props.bgImg})` }
-            : null
-        }
+        style={props.method === "pin" ? { backgroundImage: `url(${props.bgImg})` } : null}
       >
         <h2>{props.body}</h2>
         {img}

@@ -1,6 +1,5 @@
 .UserList {
   position: relative;
-  /* background-color: var(--blu); */
   background: linear-gradient(to bottom, #4e62f2 0%,#2f45a3 100%); 
   display:grid;
   grid-template-columns: 1fr;

@@ -9,6 +9,18 @@
   background-size:20em;
 }
 
+.ChatWindow::before {
+  position: absolute;
+  content:'';
+  width:100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), to(var(--blu)));
+  background: -webkit-linear-gradient(left, transparent 0%, var(--blu) 100%);
+  background: -o-linear-gradient(left, transparent 0%, var(--blu) 100%);
+  background: linear-gradient(to right, transparent 0%, var(--blu) 100%); 
+  opacity:.2;
+}
+
 .ChatWindow .Chat__Container {
   position: relative;
   width: 100%;
@@ -29,16 +41,19 @@
 }
 
 .Chat__Container::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px 10px transparent;
+  -webkit-box-shadow: inset 0 0 10px 10px transparent;
+          box-shadow: inset 0 0 10px 10px transparent;
   border: solid 3px transparent;
 }
 
 .Chat__Container::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 10px 10px var(--blu);
+  -webkit-box-shadow: inset 0 0 10px 10px var(--blu);
+          box-shadow: inset 0 0 10px 10px var(--blu);
   border-radius: 0.5em;
   border: solid 3px transparent;
 }
 
 .Chat__Container::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 10px 10px var(--b);
+  -webkit-box-shadow: inset 0 0 10px 10px var(--b);
+          box-shadow: inset 0 0 10px 10px var(--b);
 }

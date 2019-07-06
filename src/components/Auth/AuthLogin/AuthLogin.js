@@ -85,11 +85,15 @@ const AuthLogin = props => {
           const socket = openSocket("http://localhost:8080");
           socket.on("messages", data => {
             if (data.action === "create") {
-              props.setSocketData(data.post);
+              if (data.post.bearers[0] === userData.userId || data.post.bearers[1] === userData.userId) {
+                props.setSocketData(data.post);
+              }
               console.log(data);
             }
             if (data.action === "join") {
-              props.setSocketUsers(data.post);
+              if (data.post.bearers[0] === userData.userId || data.post.bearers[1] === userData.userId) {
+                props.setSocketUsers(data.post);
+              }
               console.log(data);
             }
           });

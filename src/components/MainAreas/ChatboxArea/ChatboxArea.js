@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 import ChatWindow from "./ChatWindow/ChatWindow";
 import ChatInput from "./ChatInput/ChatInput";
@@ -21,12 +21,18 @@ const ChatboxArea = props => {
     // eslint-disable-next-line
   }, [props.socketData]);
 
+  useEffect(() => {
+    loadMessages();
+    // eslint-disable-next-line
+  }, [props.match.params.id]);
+
   const loadMessages = e => {
-    console.log("test");
     const userData = JSON.parse(localStorage.getItem("userData"));
     const graphqlQuery = {
       query: `{
-        connectToStream(otherId: "${props.match.params.id}", ownId: "${userData.userId}") {
+        connectToStream(otherId: "${props.match.params.id}", ownId: "${
+        userData.userId
+      }") {
           messages {
             uId
             body
@@ -51,6 +57,7 @@ const ChatboxArea = props => {
         return res.json();
       })
       .then(resData => {
+        console.log(resData);
         setConversation({
           messages: resData.data.connectToStream.messages,
           users: resData.data.connectToStream.users
@@ -65,11 +72,18 @@ const ChatboxArea = props => {
     setConversation({ messages: newData, users: [...conversation.users] });
   };
 
-  const scrollToBottom = () => chatboxWindow.scrollTo(0, chatboxWindow.scrollHeight);
+  const scrollToBottom = () =>
+    // scrollTo not supported in Edge!
+    chatboxWindow.scrollTo(0, chatboxWindow.scrollHeight);
 
   return (
     <div className="ChatboxArea">
-      <ChatWindow setRef={setChatboxWindow} isAuth={props.isAuth} loadMessages={loadMessages} conv={conversation} />
+      <ChatWindow
+        setRef={setChatboxWindow}
+        isAuth={props.isAuth}
+        loadMessages={loadMessages}
+        conv={conversation}
+      />
       <ChatInput loadNewMsg={loadNewMsg} />
     </div>
   );

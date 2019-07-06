@@ -2,23 +2,14 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 10em 1fr;
+  background-color:var(--w1);
 }
 
 .Searchbar__Container {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.Searchbar__Container:after {
-  content:'';
-  position: absolute;
-  width:50%;
-  top:85%;
-  height: 1px;
-  opacity: 0.2;
-  background-color:#000;
+  margin-left: 2em;
 }
 
 .Searchbar__Container input {
@@ -27,7 +18,7 @@
   border-radius: 5px;
   border: none;
   text-align: center;
-  border: 1px solid transparent;
+  border: 1px solid var(--w2);
   font-family: var(--light);
   line-height: 0;
   font-size: 1.2rem;
@@ -45,8 +36,8 @@
   height:calc(100vh - 10em);
   display:flex;
   flex-direction: column;
-  align-items: center;
   overflow-y: scroll;
+  margin-left:2em;
 }
 
 .Usercard {
@@ -54,7 +45,7 @@
   width:22em;
   height:6em;
   border-radius: 5px;
-  background-color:var(--blu);
+  background-color:transparent;
   margin:.6em 0;
   display:grid;
   grid-template-rows:1fr;
@@ -62,6 +53,18 @@
   border:1px solid var(--w1);
   cursor: pointer;
   transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.Usercard:after {
+  content:'';
+  background-color:var(--b);
+  position: absolute;
+  top:110%;
+  left:50%;
+  transform:translateX(-50%);
+  width:80%;
+  height:1px;
+  opacity: 0.3;
 }
 
 .Usercard:hover {
@@ -111,5 +114,5 @@
   letter-spacing: -1.3px;
   white-space: nowrap;
   font-size: 1.4rem;
-  color:var(--w1);
+  color:var(--b);
 }
