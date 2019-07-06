@@ -62,7 +62,7 @@
 .Message__Timestamp h2 {
   line-height: 0;
   color:var(--b);
-  font-size: .8rem;
+  font-size: .7rem;
   font-family: var(--light);
 }
 

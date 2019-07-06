@@ -17,7 +17,11 @@ const ChatInput = props => {
     e.preventDefault();
     const userData = JSON.parse(localStorage.getItem("userData"));
     let graphqlQuery;
-    console.log(msg.body);
+    
+    console.log(msg);
+    console.log(props.match.params.id);
+    console.log(userData.userId);
+
     if (msg.body === "" && !attachment) {
       console.log("Nothing to send");
     } else {
@@ -31,7 +35,6 @@ const ChatInput = props => {
           .then(res => res.json())
           .then(fileResData => {
             const imageUrl = fileResData.filePath;
-            console.log(imageUrl);
             graphqlQuery = {
               query: `
               mutation {
@@ -100,7 +103,7 @@ const ChatInput = props => {
             setPreviewImage(undefined);
             setAttachment(undefined);
             setMsg({ body: "" });
-            console.log(resData);
+            // console.log(resData);
           })
           .catch(err => {
             console.log(err);
@@ -145,6 +148,7 @@ const ChatInput = props => {
           placeholder="type something..."
           className="ChatInput__Form__Input"
           value={msg.body}
+          onKeyPress={e => e.which === 13 ? sendMessage(e) : null}
           onChange={e => onChange(e)}
         />
         <input type="submit" value="" className="ChatInput__Form__Send" />

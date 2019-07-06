@@ -19,7 +19,8 @@ class App extends Component {
     username: null,
     socketData: [],
     socketUsers: [],
-    settings: false
+    settings: false,
+    route: ""
   };
   componentDidMount() {
     const expiryDate = localStorage.getItem("expiryDate");
@@ -43,18 +44,18 @@ class App extends Component {
     this.setAutoLogout(remainingMilliseconds);
     socket.on("messages", data => {
       if (data.action === "create") {
-        this.setState({ socketData: data.post });
-        console.log(data);
+        if (data.post.bearers[0] === userData.userId || data.post.bearers[1] === userData.userId) {
+          this.setState({ socketData: data.post });
+        }
+        // console.log(data);
       }
       if (data.action === "join") {
-        this.setState({ socketUsers: data.post });
-        console.log(data);
+        if (data.post.bearers[0] === userData.userId || data.post.bearers[1] === userData.userId) {
+          this.setState({ socketUSers: data.post });
+        }
+        // console.log(data);
       }
     });
-  }
-
-  componentWillUpdate() {
-    console.log('route changed');
   }
 
   setSocketData = data => this.setState({ socketData: data });
