@@ -19,7 +19,7 @@ const MainView = props => {
       mainComponent = <SearchArea />;
       break;
     case "settings":
-      mainComponent = <SettingsArea />;
+      mainComponent = <SettingsArea onLogout={props.onLogout}/>;
       break;
     default:
       break;

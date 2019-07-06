@@ -53,6 +53,10 @@ class App extends Component {
     });
   }
 
+  componentWillUpdate() {
+    console.log('route changed');
+  }
+
   setSocketData = data => this.setState({ socketData: data });
   setSocketUsers = posts => this.setState({ socketUsers: posts });
 
