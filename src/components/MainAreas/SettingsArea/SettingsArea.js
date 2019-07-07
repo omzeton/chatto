@@ -7,7 +7,7 @@ import './SettingsArea.css';
 const SettingsArea = props => {
   return (
     <div className="SettingsArea">
-      <Settings />
+      <Settings onLogout={props.onLogout}/>
     </div>
   );
 };
