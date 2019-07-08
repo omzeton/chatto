@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { withRouter } from "react-router-dom";
 
 import Msg from "./Message/Message";
 
@@ -8,7 +9,8 @@ const ChatWindow = props => {
   useEffect(() => {
     props.loadMessages();
     // eslint-disable-next-line
-  }, []);
+  }, [props.match.params.id]);
+
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   let feed = [],
@@ -91,11 +93,11 @@ const ChatWindow = props => {
 
   return (
     <div className="ChatWindow">
-      <div className="Chat__Container" ref={ref => props.setRef(ref)}>
+      <div className="Chat__Container">
         {feed}
       </div>
     </div>
   );
 };
 
-export default ChatWindow;
+export default withRouter(ChatWindow);

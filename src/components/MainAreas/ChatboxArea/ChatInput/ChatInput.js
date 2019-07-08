@@ -18,10 +18,6 @@ const ChatInput = props => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     let graphqlQuery;
     
-    console.log(msg);
-    console.log(props.match.params.id);
-    console.log(userData.userId);
-
     if (msg.body === "" && !attachment) {
       console.log("Nothing to send");
     } else {

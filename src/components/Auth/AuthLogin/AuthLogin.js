@@ -154,7 +154,6 @@ const AuthLogin = props => {
               type="password"
               placeholder="Password"
             />
-            <a href="/auth-password">Forgot password?</a>
             <input type="submit" value="Login" />
             {loading ? (
               <div className="Form__Loading">
