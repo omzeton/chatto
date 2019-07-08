@@ -8,23 +8,25 @@ import "./ChatboxArea.css";
 
 const ChatboxArea = props => {
   const [conversation, setConversation] = useState({ messages: [], users: [] });
-  const [chatboxWindow, setChatboxWindow] = useState();
 
   useEffect(() => {
-    setConversation({
-      messages: props.socketData.messages,
-      users: [...conversation.users]
-    });
-    if (chatboxWindow) {
-      scrollToBottom();
+    const currentPartnerId = props.match.params.id;
+    if (props.socketData.bearers) {
+      if (
+        props.socketData.bearers[0] !== currentPartnerId &&
+        props.socketData.bearers[1] !== currentPartnerId
+      ) {
+        console.log("Socket updated but not shown - different user ids.");
+      } else {
+        setConversation({
+          messages: props.socketData.messages,
+          users: [...conversation.users]
+        });
+      }
     }
+
     // eslint-disable-next-line
   }, [props.socketData]);
-
-  useEffect(() => {
-    loadMessages();
-    // eslint-disable-next-line
-  }, [props.match.params.id]);
 
   const loadMessages = e => {
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -72,14 +74,9 @@ const ChatboxArea = props => {
     setConversation({ messages: newData, users: [...conversation.users] });
   };
 
-  const scrollToBottom = () =>
-    // scrollTo not supported in Edge!
-    chatboxWindow.scrollTo(0, chatboxWindow.scrollHeight);
-
   return (
     <div className="ChatboxArea">
       <ChatWindow
-        setRef={setChatboxWindow}
         isAuth={props.isAuth}
         loadMessages={loadMessages}
         conv={conversation}

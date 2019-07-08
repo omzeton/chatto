@@ -6,6 +6,8 @@ import "./UserList.css";
 
 const UserList = props => {
   const [contacts, setContact] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const graphqlQuery = {
@@ -35,6 +37,7 @@ const UserList = props => {
         console.log(err);
       });
   }, [props.socketUsers]);
+
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const graphqlQuery = {
@@ -71,15 +74,31 @@ const UserList = props => {
 
   if (contacts) {
     for (let c of contacts) {
-      if (c.uId !== userData.userId) {
-        userList.push(
-          <Usermini
-            url={c.uId}
-            key={c._id}
-            avatar={c.avatar}
-            username={c.username}
-          />
-        );
+      if (searchQuery !== "") {
+        if (
+          c.username.split(searchQuery)[0] === "" &&
+          userData.userId !== c._id
+        ) {
+          userList.push(
+            <Usermini
+              url={c.uId}
+              key={c._id}
+              avatar={c.avatar}
+              username={c.username}
+            />
+          );
+        }
+      } else {
+        if (c.uId !== userData.userId) {
+          userList.push(
+            <Usermini
+              url={c.uId}
+              key={c._id}
+              avatar={c.avatar}
+              username={c.username}
+            />
+          );
+        }
       }
     }
   }
@@ -88,9 +107,15 @@ const UserList = props => {
     <div className="UserList">
       <div className="UserList__Search__Container">
         <span className="Search__Icon" />
-        <input placeholder="Search contacts" />
+        <input
+          placeholder="Search contacts"
+          onChange={e => setSearchQuery(e.target.value)}
+          value={searchQuery}
+        />
       </div>
-      <div className="UserList--Main">{userList}</div>
+      <div className="UserList--Main">
+        {userList.length === 0 ? <h2>No users found</h2> : userList}
+      </div>
     </div>
   );
 };

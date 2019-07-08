@@ -49,8 +49,8 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   display: grid;
-  grid-template-areas: "header" "input" "input" "forgot" "submit";
-  grid-template-rows: repeat(3, 3em) 1em 3em;
+  grid-template-areas: "header" "input" "input" "submit";
+  grid-template-rows: repeat(3, 3em) 3em 4em;
   grid-row-gap: 0.5em;
 }
 
