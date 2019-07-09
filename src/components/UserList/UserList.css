@@ -11,7 +11,7 @@
 }
 
 .UserList__Search__Container input {
-  width: 250px;
+  width: 87%;
   height: 32px;
   top:2em;
   position: relative;
@@ -67,4 +67,17 @@
   left:50%;
   top:50%;
   transform:translateX(-50%) translateY(-50%);
+  font-size: 1.3rem;
+}
+
+@media (max-width: 850px) {
+  .UserList--Main h2 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .UserList {
+    display: none;
+  }
 }

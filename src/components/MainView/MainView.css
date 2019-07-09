@@ -6,3 +6,15 @@
   grid-template-rows: 1fr;
   grid-template-columns:3.5em 18em 1fr;
 }
+
+@media (max-width: 850px) {
+  .MainView {
+    grid-template-columns:3.5em 12em 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .MainView {
+    grid-template-columns:3.5em 1fr;
+  }
+}

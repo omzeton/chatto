@@ -90,3 +90,16 @@
   color: var(--blu);
   background-color: var(--w1);
 }
+
+@media (max-width: 850px) {
+  .Settings .Settings__Container {
+    width:45vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .Settings .Settings__Container {
+    height:68vh;
+    width:70vw;
+  }
+}

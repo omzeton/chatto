@@ -116,3 +116,17 @@
   font-size: 1.4rem;
   color:var(--b);
 }
+
+@media (max-width: 850px) {
+  .SearchArea {
+    grid-template-rows: 7em 1fr;
+  }
+  .Searchbar__Container input {
+    position: absolute;
+    left:calc(50% - 1em);
+    transform:translateX(-50%);
+  }
+  .Usercard {
+    width:65vw;
+  }
+}
