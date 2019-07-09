@@ -34,7 +34,7 @@ class App extends Component {
     }
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
-    const socket = openSocket("http://localhost:8080");
+    const socket = openSocket("https://chatto--api.herokuapp.com");
     this.setState({
       isAuth: true,
       token: userData.token,

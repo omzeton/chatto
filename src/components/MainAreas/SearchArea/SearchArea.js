@@ -21,7 +21,7 @@ const SearchArea = props => {
         }
       }`
     };
-    fetch("http://localhost:8080/graphql", {
+    fetch("https://chatto--api.herokuapp.com/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphQLQuery)
@@ -51,7 +51,7 @@ const SearchArea = props => {
               <div
                 className="Usercard__Left__Avatar"
                 style={{
-                  backgroundImage: `url(http://localhost:8080/${u.avatar})`
+                  backgroundImage: `url(https://chatto--api.herokuapp.com/${u.avatar})`
                 }}
               />
             </div>
@@ -69,7 +69,7 @@ const SearchArea = props => {
               <div
                 className="Usercard__Left__Avatar"
                 style={{
-                  backgroundImage: `url(http://localhost:8080/${u.avatar})`
+                  backgroundImage: `url(https://chatto--api.herokuapp.com/${u.avatar})`
                 }}
               />
             </div>

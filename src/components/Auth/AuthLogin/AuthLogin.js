@@ -61,7 +61,7 @@ const AuthLogin = props => {
         }
       }`
     };
-    fetch("http://localhost:8080/graphql", {
+    fetch("https://chatto--api.herokuapp.com/graphql", {
       method: "POST",
       mode: 'cors',
       credentials: 'same-origin',
@@ -82,9 +82,9 @@ const AuthLogin = props => {
             token: resData.data.login.token,
             username: resData.data.login.username,
             userId: resData.data.login.userId,
-            avatar: `http://localhost:8080/${resData.data.login.avatar}`
+            avatar: `https://chatto--api.herokuapp.com/${resData.data.login.avatar}`
           };
-          const socket = openSocket("http://localhost:8080");
+          const socket = openSocket("https://chatto--api.herokuapp.com");
           socket.on("messages", data => {
             if (data.action === "create") {
               if (data.post.bearers[0] === userData.userId || data.post.bearers[1] === userData.userId) {

@@ -24,7 +24,7 @@ const ChatInput = props => {
       if (attachment) {
         const formData = new FormData();
         formData.append("image", attachment);
-        fetch("http://localhost:8080/post-image", {
+        fetch("https://chatto--api.herokuapp.com/post-image", {
           method: "PUT",
           body: formData
         })
@@ -49,7 +49,7 @@ const ChatInput = props => {
                 }
               }`
             };
-            return fetch("http://localhost:8080/graphql", {
+            return fetch("https://chatto--api.herokuapp.com/graphql", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(graphqlQuery)
@@ -86,7 +86,7 @@ const ChatInput = props => {
             }
           }`
         };
-        fetch("http://localhost:8080/graphql", {
+        fetch("https://chatto--api.herokuapp.com/graphql", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(graphqlQuery)

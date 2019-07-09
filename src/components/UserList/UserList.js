@@ -22,7 +22,7 @@ const UserList = props => {
         }
       }`
     };
-    fetch("http://localhost:8080/graphql", {
+    fetch("https://chatto--api.herokuapp.com/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(graphqlQuery)
@@ -52,7 +52,7 @@ const UserList = props => {
         }
       }`
     };
-    fetch("http://localhost:8080/graphql", {
+    fetch("https://chatto--api.herokuapp.com/graphql", {
       method: "POST",
       mode: 'cors',
       headers: { "Content-Type": "application/json" },

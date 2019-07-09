@@ -22,8 +22,8 @@ const ChatWindow = props => {
 
         let innerMessages = [],
           label = con.messages[i].uId === userData.userId ? "self" : "other",
-          bgImg = `http://localhost:8080/${con.messages[i].avatar}`,
-          attachment = con.messages[i].attachment === "null" ? false : `http://localhost:8080/${con.messages[i].attachment}`,
+          bgImg = `https://chatto--api.herokuapp.com/${con.messages[i].avatar}`,
+          attachment = con.messages[i].attachment === "null" ? false : `https://chatto--api.herokuapp.com/${con.messages[i].attachment}`,
           msgStream = <div className={label} key={i + 20}>{innerMessages}</div>,
           prevMsgId = i - 1 === -1 ? con.messages[0].uId : con.messages[i - 1].uId,
           nextMsgId = con.messages[i+1] === undefined ? con.messages[i].uId : con.messages[i+1].uId;
