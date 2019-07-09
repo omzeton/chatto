@@ -127,6 +127,12 @@
     transform:translateX(-50%);
   }
   .Usercard {
+    width:90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .Usercard {
     width:65vw;
   }
 }

@@ -1,10 +1,30 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, withRouter } from "react-router-dom";
 
 import "./OptionsList.css";
 
 const OptionsList = props => {
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  const [currentPath, setCurrentPath] = useState(props.match.url);
+  useEffect(() => {
+    setCurrentPath(props.match.url);
+    //eslint-disable-next-line
+  }, [props.match.url]);
+
+  const convStyles = ["OptionsList__Button", "OptionsList__Button--ConvList"];
+  const searchStyles = ["OptionsList__Button", "OptionsList__Button--Search"];
+  const settingsStyles = [
+    "OptionsList__Button",
+    "OptionsList__Button--Settings"
+  ];
+  const url = currentPath.split("/mainView/")[1];
+  if (url === "settings") {
+    settingsStyles.push("active");
+  } else if (url === "search") {
+    searchStyles.push("active");
+  } else {
+    convStyles.push("active");
+  }
+  const userData = JSON.parse(localStorage.getItem("userData"));
   return (
     <div className="OptionsList">
       <div className="OptionsList__Logo">
@@ -13,26 +33,21 @@ const OptionsList = props => {
           alt="Chatto"
         />
       </div>
-      <NavLink
-        activeClassName="active"
-        className="OptionsList__Button OptionsList__Button--ConvList"
-        to="/mainView/messages/:id"
+      {/* I chose Link over NavLink because I want the button to have "active" class after /messages path, not just /messages/:id. */}
+      <Link className={convStyles.join(" ")} to="/mainView/messages/:id" />
+      <Link className={searchStyles.join(" ")} to="/mainView/search" />
+      <Link className={settingsStyles.join(" ")} to="/mainView/settings" />
+      <div
+        className="User__Avatar--Small"
+        style={{ backgroundImage: `url(${userData.avatar})` }}
       />
-      <NavLink
-        activeClassName="active"
-        className="OptionsList__Button OptionsList__Button--Search"
-        to="/mainView/search"
-      />
-      <NavLink
-        activeClassName="active"
-        className="OptionsList__Button OptionsList__Button--Settings"
-        to="/mainView/settings"
-      />
-      <div className="User__Avatar--Small" style={{backgroundImage: `url(${userData.avatar})`}}></div>
       <div />
-      <div className="OptionsList__Button OptionsList__Button--Logout" onClick={() => props.onLogout()}/>
+      <div
+        className="OptionsList__Button OptionsList__Button--Logout"
+        onClick={() => props.onLogout()}
+      />
     </div>
   );
 };
 
-export default OptionsList;
+export default withRouter(OptionsList);
