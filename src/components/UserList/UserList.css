@@ -4,6 +4,7 @@
   display:grid;
   grid-template-columns: 1fr;
   grid-template-rows:5.5em 1fr;
+  overflow: hidden;
 }
 
 .UserList__Search__Container {
@@ -71,6 +72,9 @@
 }
 
 @media (max-width: 850px) {
+  .UserList__Search__Container .Search__Icon {
+    left:17px;
+  }
   .UserList--Main h2 {
     font-size: 1rem;
   }
